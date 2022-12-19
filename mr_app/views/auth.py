@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, logout, login
 from ..models import User
-from ..views.home import home_view
+from .main_pages import home_view
 # Create your views here.
 
 

@@ -1,0 +1,134 @@
+{% extends 'main_pages/layouts/app.html' %}
+
+{% block content %}
+{% load static %}
+
+ <!-- ***** Main Banner Area End ***** -->
+ <section class="apply-now" id="apply" >
+    <div class="container">
+      <br><br>
+        <div class="col-lg-18">
+          <div class="accordions is-first-expanded">
+          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#RegisterManga">Cadastrar Manga</button>
+          <br><br>
+          <table id="table" name="table" class="table table-bordered table-hover" width="100%">
+                <thead>
+                    <tr style="position: relative; display: block;" >
+                        <th>id</th>
+                        <th>name</th>
+                        <th>capitulos</th>
+                        <th>status</th>
+                        <th>data_lancamento</th>
+                        <th>opcoes</th>
+                    </tr>
+                </thead>
+                <tbody style="display: block; height: 350px; overflow: auto;">
+                    <tr>
+                      <td>1</td>
+                      <td>Boku No Hero</td>
+                      <td>400</td>
+                      <td>in progress</td>
+                      <td>01/01/2000</td>
+                      <td><a href="#" class="btn btn-outline-primary"><span>Edit</span></a>
+                        <a href="#" class="btn btn-outline-primary"><span>Delete</span></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Boku No Hero</td>
+                      <td>400</td>
+                      <td>in progress</td>
+                      <td>01/01/2000</td>
+                      <td><a href="#" class="btn btn-outline-primary"><span>Edit</span></a>
+                        <a href="#" class="btn btn-outline-primary"><span>Delete</span></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Boku No Hero</td>
+                      <td>400</td>
+                      <td>in progress</td>
+                      <td>01/01/2000</td>
+                      <td><a href="#" class="btn btn-outline-primary"><span>Edit</span></a>
+                        <a href="#" class="btn btn-outline-primary"><span>Delete</span></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Boku No Hero</td>
+                      <td>400</td>
+                      <td>in progress</td>
+                      <td>01/01/2000</td>
+                      <td><a href="#" class="btn btn-outline-primary"><span>Edit</span></a>
+                        <a href="#" class="btn btn-outline-primary"><span>Delete</span></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Boku No Hero</td>
+                      <td>400</td>
+                      <td>in progress</td>
+                      <td>01/01/2000</td>
+                      <td><a href="#" class="btn btn-outline-primary"><span>Edit</span></a>
+                        <a href="#" class="btn btn-outline-primary"><span>Delete</span></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Boku No Hero</td>
+                      <td>400</td>
+                      <td>in progress</td>
+                      <td>01/01/2000</td>
+                      <td><a href="#" class="btn btn-outline-primary"><span>Edit</span></a>
+                        <a href="#" class="btn btn-outline-primary"><span>Delete</span></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Boku No Hero</td>
+                      <td>400</td>
+                      <td>in progress</td>
+                      <td>01/01/2000</td>
+                      <td><a href="#" class="btn btn-outline-primary"><span>Edit</span></a>
+                        <a href="#" class="btn btn-outline-primary"><span>Delete</span></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Boku No Hero</td>
+                      <td>400</td>
+                      <td>in progress</td>
+                      <td>01/01/2000</td>
+                      <td><a href="#" class="btn btn-outline-primary"><span>Edit</span></a>
+                        <a href="#" class="btn btn-outline-primary"><span>Delete</span></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Boku No Hero</td>
+                      <td>400</td>
+                      <td>in progress</td>
+                      <td>01/01/2000</td>
+                      <td><a href="#" class="btn btn-outline-primary"><span>Edit</span></a>
+                        <a href="#" class="btn btn-outline-primary"><span>Delete</span></a>
+                      </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="contact-us" id="contact">
+  {% include 'main_pages/layouts/footer.html' %}
+</section>
+
+
+<style>
+  th, td{
+ width: 200px;
+}
+</style>
+{% endblock %}

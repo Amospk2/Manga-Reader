@@ -3,64 +3,69 @@
 {% block content %}
 {% load static %}
 
-    <section class="contact-us" style="margin-left: 25%;">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-9 align-self-center">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <form action="{% url 'auth' %}" id="contact" method="post">
-                                {% csrf_token %}
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <h2>Entre agora no sistema!</h2>
-                                    </div>
-                                    <br>
-                                    <ul class="messages">
-                                        {% if messages %}
+
+<section class="meetings-page" id="meetings">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="meeting-single-item main-container-login">
+                            <div class="down-content">
+                                <form action="{% url 'auth' %}" id="contact" method="post">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h2>Entre agora no sistema!</h2>
+                                        </div>
+                                        <br>
                                         <ul class="messages">
-                                            {% for message in messages %}
-                                            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}> <p style="color: red;">* {{ message }}</p></li>
-                                                {% endfor %}
+                                            {% if messages %}
+                                            <ul class="messages">
+                                                {% for message in messages %}
+                                                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                                                    <p style="color: red;">* {{ message }}</p>
+                                                    </li>
+                                                    {% endfor %}
+                                            </ul>
+                                            {% endif %}
                                         </ul>
-                                        {% endif %}
-                                    </ul>
 
-                                    <br>
-                                    
-                                    <div class="col-lg-12">
-                                        <fieldset>
-                                            <label style="margin-left:10px;">Email:</label>
-                                            <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*"
-                                                required="">
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <fieldset>
-                                            <label style="margin-left:10px;">Senha:</label>
-                                            <input name="password" type="password" id="password" 
-                                                required="">
-                                        </fieldset>
-                                    </div>
-                                    <br>
+                                        <br>
 
-                                    <div class="col-lg-12">
-                                        <fieldset align="center">
-                                            <button type="submit" id="form-submit" class="button">Entrar</button>
-                                            <br>
-                                            <br>
-                                            <button type="submit" onClick="window.location.href='/register';" class="button">Criar Uma Conta</buton>
-                                        </fieldset>
+                                        <div class="col-lg-12">
+                                            <fieldset>
+                                                <label style="margin-left:10px;">Email:</label>
+                                                <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*"
+                                                    required="">
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <fieldset>
+                                                <label style="margin-left:10px;">Senha:</label>
+                                                <input name="password" type="password" id="password" required="">
+                                            </fieldset>
+                                        </div>
+                                        <br>
+
+                                        <div class="col-lg-12">
+                                            <fieldset align="center">
+                                                <button type="submit" id="form-submit" class="button">Entrar</button>
+                                                <br>
+                                                <br>
+                                                <button type="submit" onClick="window.location.href='/register';"
+                                                    class="button">Criar Uma Conta</buton>
+                                            </fieldset>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-    </section>
+</section>
 
 
 {% endblock %}

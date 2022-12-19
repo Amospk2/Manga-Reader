@@ -1,10 +1,100 @@
-body {
-    background-image: url(../images/meetings-bg.jpg);
+h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: azure;
+    font-weight: 600;
+}
+
+.main-container-login {
+    margin: 10% 0 0 14%;
+    width: 75%;
 }
 
 
 h2 {
-text-align:center;
-margin-bottom:15px;
-color: azure; font-weight: 600;
+    text-transform: uppercase;
+    color: #1f272b;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    font-size: 22px;
+    font-weight: 700;
 }
+
+input {
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #f7f7f7;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: #7a7a7a;
+    padding: 0px 15px;
+    margin-bottom: 30px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 140px;
+    max-height: 180px;
+    border-radius: 20px;
+    background-color: #f7f7f7;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: #7a7a7a;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+
+button {
+    font-size: 13px;
+    color: #fff;
+    background-color: #a12c2f;
+    padding: 12px 30px;
+    display: inline-block;
+    border-radius: 22px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: all .3s;
+    border: none;
+    outline: none;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+.right-info {
+    background-color: #a12c2f;
+    border-radius: 20px;
+    padding: 40px;
+  }
+.right-info ul li {
+    display: inline-block;
+    border-bottom: 1px solid rgba(250,250,250,0.15);
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+  }
+.right-info ul li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+.right-info ul li h6 {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+.right-info ul li span {
+    display: block;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 700;
+}
+
