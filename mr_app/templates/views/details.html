@@ -1,0 +1,104 @@
+{% extends 'views/layouts/app.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<section class="heading-page header-text" id="top">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h2>Berserk</h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="meetings-page" id="meetings">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="meeting-single-item">
+              <div class="down-content">
+                <div class="row">
+                  <div class="col-lg-5 col-md-5 col-sm-6">
+                    <div class="white-box text-center"><img src='{% static "images/wallpaperflare-berserk.jpg" %}'
+                        class="img-responsive"></div>
+                  </div>
+                  <div class="col-lg-7 col-md-7 col-sm-6">
+                    <h4 class="box-title mt-5">Sobre:</h4>
+                    <p>Lorem Ipsum available,but the majority have suffered alteration in some form,by injected
+                      humour,or randomised words which don't look even slightly believable.but the majority have
+                      suffered alteration in some form,by injected humour</p>
+                    <h3 class="box-title mt-5">Tags</h3>
+                    <ul class="list-unstyled">
+                      <li><i class="fa fa-check text-success"></i>Sturdy structure</li>
+                      <li><i class="fa fa-check text-success"></i>Designed to foster easy portability</li>
+                      <li><i class="fa fa-check text-success"></i>Perfect furniture to flaunt your wonderful
+                        collectibles</li>
+                    </ul>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+<section class="contact-us"
+    id="contact">
+    {% include 'views/layouts/footer.html' %}
+</section>
+
+<script>
+  //according to loftblog tut
+  $('.nav li:first').addClass('active');
+
+  var showSection = function showSection(section, isAnimate) {
+    var
+      direction = section.replace(/#/, ''),
+      reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+      reqSectionPos = reqSection.offset().top - 0;
+
+    if (isAnimate) {
+      $('body, html').animate({
+        scrollTop: reqSectionPos
+      },
+        800);
+    } else {
+      $('body, html').scrollTop(reqSectionPos);
+    }
+
+  };
+
+  var checkSection = function checkSection() {
+    $('.section').each(function () {
+      var
+        $this = $(this),
+        topEdge = $this.offset().top - 80,
+        bottomEdge = topEdge + $this.height(),
+        wScroll = $(window).scrollTop();
+      if (topEdge < wScroll && bottomEdge > wScroll) {
+        var
+          currentId = $this.data('section'),
+          reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+        reqLink.closest('li').addClass('active').
+          siblings().removeClass('active');
+      }
+    });
+  };
+
+  $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+    e.preventDefault();
+    showSection($(this).attr('href'), true);
+  });
+
+  $(window).scroll(function () {
+    checkSection();
+  });
+</script>
+{% endblock %}

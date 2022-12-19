@@ -1,0 +1,5 @@
+env/
+db.sqlite3
+mr_app/__pycache__/
+mr_app/migrations/
+mr_project/__pycache__/

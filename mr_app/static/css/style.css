@@ -1,0 +1,10 @@
+body {
+    background-image: url(../images/meetings-bg.jpg);
+}
+
+
+h2 {
+text-align:center;
+margin-bottom:15px;
+color: azure; font-weight: 600;
+}
