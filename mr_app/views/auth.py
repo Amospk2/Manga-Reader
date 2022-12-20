@@ -24,6 +24,16 @@ def logout_view(request):
     logout(request)
     return redirect(login_view)
 
+def edit_view(request):
+    return render(request, 'auth/edit.html')
+
+def user_crud(request):
+    users = User.objects.all()
+    return render(request, 'auth/user_crud.html', {'users':users})
+
+def edit(request, id):
+    user = User.objects.get(id=id)
+    return render(request, 'auth/edit.html', {'user':user})
 
 def auth(request):
     username =request.POST.get('email')
@@ -42,24 +52,5 @@ def auth(request):
         messages.error(request=request, message="Informações incorretas")
         return render(request, 'auth/login.html')
 
-def create_new_user(request):
-    email = request.POST.get('email')
-    username = request.POST.get('username')
-    tipo = "usuário"
-    dataNascimento = request.POST.get('dataNascimento')
-    senha = request.POST.get('password')
-    confirmarsenha = request.POST.get('confirmpassword')
 
-    if(email != None and username != None  and tipo != None and dataNascimento   != None and senha != None):
-        messages.error(request=request, message="Preencha todos os campos")
 
-    if(senha != confirmarsenha):
-        messages.error(request=request, message="As senha não coicidem.")
-        return redirect(register_view)
-    
-    user = User.objects.create_user(username=username, email=email, password=senha)
-    user.tipo = tipo
-    user.dataNascimento = dataNascimento
-    user.save()
-    
-    return redirect(login_view)

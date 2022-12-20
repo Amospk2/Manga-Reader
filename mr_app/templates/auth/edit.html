@@ -1,9 +1,10 @@
 {% extends 'auth/layouts/base_auth.html' %}
 
-{% block title%} Cadastro {% endblock %}
+{% block title%} Edit User {{user.username}} {% endblock %}
 
 {% block content %}
 {% load static %}
+
 
 <section class="painel" id="meetings">
     <div class="container">
@@ -13,7 +14,7 @@
                     <div class="col-lg-12">
                         <div class="painel-single-item painel-margin">
                             <div class="down-content">
-                                <form action="{% url 'create_new_user' %}"  id="contact" method="post">
+                                <form action="{% url 'edit_user' user.id %}"  id="contact" method="post">
                                     {% csrf_token %}
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -33,7 +34,7 @@
                                             <fieldset>
                                                 <label style="margin-left:10px;">E-mail:</label>
                                                 <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*"
-                                                  required="">
+                                                  required value="{{user.email}}">
                                             </fieldset>
                                         </div>
     
@@ -41,13 +42,13 @@
                                             <fieldset>
                                                 <label style="margin-left:10px;">Usuário:</label>
                                                 <input name="username" type="text" id="username"
-                                                    required="">
+                                                    required value="{{user.username}}">
                                             </fieldset>
                                         </div>
     
                                         <div class="col-lg-12">
                                                 <label style="margin-left:10px;">Data de nascimento:</label>
-                                                <input type="date" name="dataNascimento" required>
+                                                <input type="date" name="dataNascimento" required value="{{user.data_nascimento|date:'Y-m-d'}}">
                                         </div>
     
     
@@ -55,24 +56,24 @@
                                             <fieldset>
                                                 <label style="margin-left:10px;">Senha:</label>
                                                 <input name="password" type="password" id="password"
-                                                    required="">
+                                                required>
                                             </fieldset>
                                         </div>
                                         <div class="col-lg-6">
                                             <fieldset>
                                                 <label style="margin-left:10px;">Confirmar senha:</label>
                                                 <input name="confirmpassword" type="password" id="confirmpassword"
-                                                    required="">
+                                                    required>
                                             </fieldset>
                                         </div>
                                         <br>
     
                                         <div class="col-lg-12">
                                             <fieldset align="center">
-                                                <button type="submit" id="form-submit" class="button">Criar Conta</button>
+                                                <button type="submit" id="form-submit" class="button">Editar Conta</button>
                                                 <br>
                                                 <br>
-                                                <button type="submit" onClick="window.location.href='/login';" class="button">Retorar para a pagina de login</buton>
+                                                <button type="submit" onClick="window.location.href='/user_crud';" class="button">Retorar para a pagina de usuários</buton>
                                             </fieldset>
                                         </div>
                                     </div>

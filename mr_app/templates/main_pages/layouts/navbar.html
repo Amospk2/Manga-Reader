@@ -15,6 +15,8 @@
                         <li><a href="/categories" class="{% if request.path == '/categories/' %} active {% endif %}">Categorias</a></li>
                         <li><a href="/about" class="{% if request.path == '/about/' %} active {% endif %}">Sobre nós</a></li>
                         <li><a href="/manga/" class="{% if request.path == '/manga/' %} active {% endif %}">CRUD Manga</a></li>
+                        <li><a href="/user_crud/" class="{% if request.path == '/user_crud/' %} active {% endif %}">CRUD Usuário</a></li>
+                        <li><a href="/forum/" class="{% if request.path == '/forum/' %} active {% endif %}">Forum</a></li>
                         {% if user %} 
                         <li><a href="/logout">Logout</a></li> 
                         {% elif not user %} 
