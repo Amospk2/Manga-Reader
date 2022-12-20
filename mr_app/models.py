@@ -14,6 +14,7 @@ class Manga(models.Model):
     author = models.CharField(max_length=50, unique=True, blank=False)
     description = models.TextField()
     tags = models.TextField()
+    image = models.ImageField(default=None)
     managers = models.ManyToManyField(User)
 
     def __str__(self):
@@ -40,10 +41,22 @@ class Page(models.Model):
 
 
 class Comment(models.Model):
-    fk_page = None
+    fk_page = models.ForeignKey(Page, on_delete=models.CASCADE, default=None)
     title = models.CharField(max_length=50, unique=True, blank=False)
     content = models.TextField()
 
     def __str__(self):
         return self.title
 
+
+class ForumPost(models.Model):
+    title = models.CharField(max_length=50, unique=True, blank=False)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+
+class ForumPostComment(models.Model):
+    fk_forumpost = models.ForeignKey(ForumPost, on_delete=models.CASCADE)
+    content = models.TextField()
