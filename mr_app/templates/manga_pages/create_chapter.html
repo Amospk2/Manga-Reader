@@ -1,0 +1,89 @@
+{% extends 'main_pages/layouts/app.html' %}
+
+{% block title%} Detalhes{% endblock %}
+
+{% block content %}
+{% load static %}
+
+
+
+<section class="heading-page header-text" id="top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Crie Aqui Um Novo Capitulo para o manda: Manga Name</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="painel" id="meetings">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="painel-single-item">
+                            <div class="down-content">
+
+                                <form action="" method="" enctype="multipart/form-data" id="my-form">
+
+                                    <div class="col-lg-12">
+                                        <fieldset>
+                                            <label style="margin-left:10px;">Titulo:</label>
+                                            <input class="input" name="title" type="text" id="title" required="">
+                                        </fieldset>
+                                    </div>
+
+
+                                    <div class="col-lg-12">
+                                        <label style="margin-left:10px;">Data de Lancamento:</label>
+                                        <input class="input" type="date" name="release_date" required>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <fieldset>
+                                            <label style="margin-left:10px;">Descrição:</label>
+                                            <textarea name="description" type="text" style="background-color: #e9e3e3;"
+                                                class="form-control description" id="description" rows="5"
+                                                required=""></textarea>
+                                        </fieldset>
+                                    </div>
+
+
+                                    <label style="margin-left:10px;">Adicione na ordem que deseja que aparecam!:</label>
+                                    <div class="multiple-uploader" id="multiple-uploader">
+                                        <div class="mup-msg">
+                                            <span class="mup-main-msg">Adicione aqui todas as imagens do capitulo!</span>
+                                            <span class="mup-msg">Apenas imagens são permitidas!</span>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section>
+<section class="contact-us" id="contact">
+    {% include 'main_pages/layouts/footer.html' %}
+</section>
+
+<script src='{% static "js/manga.js" %}'></script>
+<script src='{% static "js/util.js" %}'></script>
+<link rel="stylesheet" href='{% static "css/manga.css" %}'>
+
+
+<script>
+    let multipleUploader = new MultipleUploader('#multiple-uploader').init({
+        maxUpload: 200, // maximum number of uploaded images
+        maxSize: 2, // in size in mb
+        filesInpName: 'images', // input name sent to backend
+        formSelector: '#my-form', // form selector
+    });
+
+</script>
+
+
+{% endblock %}

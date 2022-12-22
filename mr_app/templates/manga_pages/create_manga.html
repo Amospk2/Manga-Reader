@@ -1,0 +1,137 @@
+{% extends 'main_pages/layouts/app.html' %}
+
+{% block title%} Detalhes{% endblock %}
+
+{% block content %}
+{% load static %}
+
+
+
+<section class="heading-page header-text" id="top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Crie Aqui Um Novo Manga!</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="painel" id="meetings">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="painel-single-item">
+                            <div class="down-content">
+
+                                <form action="" method="" enctype="multipart/form-data" id="my-form">
+
+                                    <div class="col-lg-12">
+                                        <fieldset>
+                                            <label style="margin-left:10px;">Nome:</label>
+                                            <input class="input" name="nome" type="text" id="nome" required="">
+                                        </fieldset>
+                                    </div>
+
+
+                                    <div class="col-lg-12">
+                                        <label style="margin-left:10px;">Data de Lancamento:</label>
+                                        <input class="input" type="date" name="dataLancamento" required>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <fieldset>
+                                            <label style="margin-left:10px;">Nome do autor:</label>
+                                            <input class="input" name="nome" type="text" id="nome" required="">
+                                        </fieldset>
+                                    </div>
+
+
+
+                                    <div class="col-lg-12">
+                                        <fieldset>
+                                            <label style="margin-left:10px;">Descrição:</label>
+                                            <textarea name="description" type="text" style="background-color: #e9e3e3;"
+                                                class="form-control description" id="description" rows="5"
+                                                required=""></textarea>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="col-lg-12 divSelect">
+                                        <label>Escolha as tags do manga:</label>
+                                        <br>
+                                        <select class="js-example-responsive" multiple="multiple"
+                                            style=" width: 50%;">
+                                            <option value="Ação">Ação</option>
+                                            <option value="Aventura">Aventura</option>
+                                            <option value="Shounen">Shounen</option>
+                                            <option value="Seinen">Seinen</option>
+                                            <option value="Drama">Drama</option>
+                                            <option value="Fantasia">Shounen</option>
+                                            <option value="Romance">Romance</option>
+                                            <option value="Sci-fi">Sci-fi</option>
+                                        </select> 
+                                    </div>
+                                    <br>
+                                    <div class="col-lg-12 divSelect">
+                                        <label>Escolha quem poderá manipular esse manga:</label>
+                                        <br>
+                                        <select class="js-example-responsive" multiple="multiple"
+                                            style=" width: 50%;">
+                                            {% for use in users %}
+                                                <option value="{{use.username}}">{{use.username}}</option>
+                                            {% endfor %}
+                                        </select> 
+                                    </div>
+
+
+                                    <div class="multiple-uploader" id="multiple-uploader">
+                                        <div class="mup-msg">
+                                            <span class="mup-main-msg">Adicione a foto do banner para o manga</span>
+                                            <span class="mup-msg" id="max-upload-number">Apenas 1 foto é
+                                                necessaria</span>
+                                            <span class="mup-msg">Apenas imagens são permitidas!</span>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section>
+<section class="contact-us" id="contact">
+    {% include 'main_pages/layouts/footer.html' %}
+</section>
+
+<script src='{% static "js/manga.js" %}'></script>
+<script src='{% static "js/util.js" %}'></script>
+<link rel="stylesheet" href='{% static "css/manga.css" %}'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+
+
+
+<script>
+    $(".js-example-responsive").select2({
+        width: 'resolve' // need to override the changed default
+    });
+
+
+    let multipleUploader = new MultipleUploader('#multiple-uploader').init({
+        maxUpload: 1, // maximum number of uploaded images
+        maxSize: 2, // in size in mb
+        filesInpName: 'images', // input name sent to backend
+        formSelector: '#my-form', // form selector
+    });
+
+
+
+</script>
+
+
+{% endblock %}

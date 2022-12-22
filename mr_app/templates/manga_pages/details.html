@@ -47,46 +47,26 @@
                 <h3 class="box-title mt-5">Capitulos</h3>
                 <br>
 
-                <div class="list-group">
+                <div class="list-group divOverflow">
 
-                  <a class="list-group-item list-group-item-action" data-bs-toggle="collapse" href="#collapseExample1"
-                    role="button" aria-expanded="false" aria-controls="collapseExample1">
+                  <a class="list-group-item list-group-item-action" href="/manga/view-chapter/1">
                     Capitulo 01
                   </a>
-                  <div class="collapse" id="collapseExample1">
-                    <div class="card card-body">
-                      Some placeholder content for the collapse component. This panel is hidden by default but revealed
-                      when the user activates the relevant trigger.
-                    </div>
-                  </div>
 
-                  <a class="list-group-item list-group-item-action" data-bs-toggle="collapse" href="#collapseExample2"
-                    role="button" aria-expanded="false" aria-controls="collapseExample2">
+
+                  <a class="list-group-item list-group-item-action" 
+                    >
                     Capitulo 02
                   </a>
-                  <div class="collapse" id="collapseExample2">
-                    <div class="card card-body">
-                      Some placeholder content for the collapse component. This panel is hidden by default but revealed
-                      when the user activates the relevant trigger.
-                    </div>
-                  </div>
 
-                  <a class="list-group-item list-group-item-action" data-bs-toggle="collapse" href="#collapseExample3"
-                    role="button" aria-expanded="false" aria-controls="collapseExample3">
+
+                  <a class="list-group-item list-group-item-action" >
                     Capitulo 03
                   </a>
-                  <div class="collapse" id="collapseExample3">
-                    <div class="card card-body">
-                      Some placeholder content for the collapse component. This panel is hidden by default but revealed
-                      when the user activates the relevant trigger.
-                    </div>
-                  </div>
-
-
-
                 </div>
-
+                <a href="/manga/1/create-chapter" class="my-custom-button" type="button">Adicionar Novo Capitulo</a>
               </div>
+
             </div>
           </div>
 
@@ -98,5 +78,7 @@
     id="contact">
     {% include 'main_pages/layouts/footer.html' %}
 </section>
+
+<link rel="stylesheet" href='{% static "css/details.css" %}'>
 
 {% endblock %}

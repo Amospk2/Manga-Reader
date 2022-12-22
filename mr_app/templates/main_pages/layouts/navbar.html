@@ -14,7 +14,13 @@
                         <li><a href="/" class="{% if request.path == '/' %} active {% endif %}">Home</a></li>
                         <li><a href="/categories" class="{% if request.path == '/categories/' %} active {% endif %}">Categorias</a></li>
                         <li><a href="/about" class="{% if request.path == '/about/' %} active {% endif %}">Sobre nós</a></li>
-                        <li><a href="/manga/" class="{% if request.path == '/manga/' %} active {% endif %}">CRUD Manga</a></li>
+                        <li class="has-sub {% if request.path == '/manga/' %} active {% endif %}">
+                            <a href="javascript:void(0)">Manga CRUD</a>
+                            <ul class="sub-menu">
+                                <li><a href="/manga">Visualizar Mangas</a></li>
+                                <li><a href="/manga/create-manga/">Criar Novo Manga</a></li>
+                            </ul>
+                        </li>
                         <li><a href="/user_crud/" class="{% if request.path == '/user_crud/' %} active {% endif %}">CRUD Usuário</a></li>
                         <li><a href="/forum/" class="{% if request.path == '/forum/' %} active {% endif %}">Forum</a></li>
                         {% if user %} 
