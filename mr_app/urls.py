@@ -2,7 +2,7 @@ from django.urls import path
 from .views.auth import auth, register_view, logout_view, login_view, edit
 from .views.user_crud import edit_user, user_crud, change_type_of_user, create_new_user, delete_user
 from .views.main_pages import home_view, about, categories
-from .views.manga import manga, create_manga, details, create_chapter, view_chapter
+from .views.manga import manga, create_manga, details, create_chapter, view_chapter, create_new_manga, delete_manga
 from .views.forum import forum, forum_post
 
 urlpatterns = [
@@ -30,6 +30,8 @@ urlpatterns = [
     path('manga/details/<int:id>', details, name="details"),
     path('manga/view-chapter/<int:id>', view_chapter, name="view_chapter"),
     path('manga/<int:id>/create-chapter/', create_chapter, name="create_chapter"),
+    path('manga/create-new-manga/', create_new_manga, name='create_new_manga'),
+    path('manga/delete-manga/<int:id>', delete_manga, name='delete_manga'),
 
     #forum
     path('forum/', forum, name="forum"),

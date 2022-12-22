@@ -145,7 +145,7 @@
 }
 
 
-button {
+.stylebutton {
     font-size: 13px;
     color: #fff;
     background-color: #e6e6e6;
@@ -159,6 +159,6 @@ button {
     outline: none;
 }
 
-.button:hover {
+.stylebutton:hover {
     opacity: 0.9;
 }

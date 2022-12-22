@@ -11,11 +11,11 @@ class User(AbstractUser):
 
 class Manga(models.Model):
     title = models.CharField(max_length=30, unique=True, blank=False)
-    release_date = models.DateField()
-    author = models.CharField(max_length=50, unique=True, blank=False)
+    release_date = models.DateField(auto_now_add=True)
+    author = models.CharField(max_length=50, blank=False)
     description = models.TextField()
     tags = models.TextField()
-    image = models.ImageField(default=None)
+    image = models.ImageField(upload_to='storage/manga/',default=None)
     managers = models.ManyToManyField(User)
 
     def __str__(self):
@@ -24,7 +24,7 @@ class Manga(models.Model):
     
 class Capitulo(models.Model):
     fk_manga = models.ForeignKey(Manga, on_delete=models.CASCADE)
-    release_date = models.DateField()
+    release_date = models.DateField(auto_now_add=True)
     title = models.CharField(max_length=50, unique=True, blank=False)
     description = models.TextField()
     
@@ -35,7 +35,7 @@ class Capitulo(models.Model):
 class Page(models.Model):
     fk_capitulo = models.ForeignKey(Capitulo, on_delete=models.CASCADE)
     title = models.CharField(max_length=50, unique=True, blank=False)
-    file = models.ImageField()
+    file = models.ImageField(upload_to='storage/page/',)
 
     def __str__(self):
         return self.title

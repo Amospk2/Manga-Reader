@@ -16,6 +16,7 @@ def create_new_user(request):
 
     if(email != None and username != None  and tipo != None and dataNascimento   != None and senha != None):
         messages.error(request=request, message="Preencha todos os campos")
+        return redirect(register_view)
 
     if(senha != confirmarsenha):
         messages.error(request=request, message="As senha não coicidem.")

@@ -42,7 +42,7 @@ def auth(request):
     if(username is not None and senha is not None):
         user = authenticate(username=username, password=senha)
     else:
-        messages.error(request=request, message="Preenche essa merda")
+        messages.error(request=request, message="Preencha todos os campos")
         return render(request, 'auth/login.html')
 
     if user is not None:

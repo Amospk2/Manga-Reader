@@ -27,29 +27,29 @@
                 <div style="overflow:auto; height: 500px;">
                   <table id="table" name="table" class="table table-bordered table-hover" width="100%">
                     <thead>
-                      <tr >
+                      <tr>
                         <th>id</th>
-                        <th>name</th>
-                        <th>capitulos</th>
-                        <th>status</th>
-                        <th>data_lancamento</th>
+                        <th>titulo</th>
+                        <th>data de lancamento</th>
+                        <th>author</th>
                         <th>opcoes</th>
                       </tr>
                     </thead>
                     <tbody>
-                    
-                      <tr>
-                        <td>1</td>
-                        <td>Boku No Hero</td>
-                        <td>400</td>
-                        <td>in progress</td>
-                        <td>01/01/2000</td>
-                        <td>
-                          <a href="#" class="btn btn-outline-primary"><span>Edit</span></a>
-                          <a href="#" class="btn btn-outline-primary"><span>Delete</span></a>
-                          <a href="/manga/1/create-chapter" class="btn btn-outline-primary"><span>Add Capitulo</span></a>
-                        </td>
-                      </tr>
+
+                      {% for manga in mangas %}
+                        <tr>
+                          <td>{{manga.id}}</td>
+                          <td>{{manga.title}}</td>
+                          <td>{{manga.release_date}}</td>
+                          <td>{{manga.author}}</td>
+                          <td>
+                            <a href="#" class="btn btn-outline-primary"><span>Edit</span></a>
+                            <a href="/manga/delete-manga/{{manga.id}}" class="btn btn-outline-primary"><span>Delete</span></a>
+                            <a href="/manga/details/{{manga.id}}" class="btn btn-outline-primary"><span>Gerenciar</span></a>
+                          </td>
+                        </tr>
+                      {% endfor %}
 
                     </tbody>
                   </table>
