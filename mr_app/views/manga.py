@@ -23,9 +23,6 @@ def edit_manga(request, id):
     return render(request, 'manga_pages/edit_manga.html', {'user': request.user if request.user.is_authenticated else None, 'users':users, 'form':form, 'tags':tags, 'id':id})
 
 
-def view_chapter(request, id):
-    users = User.objects.all()
-    return render(request, 'manga_pages/view_chapter.html', {'user': request.user if request.user.is_authenticated else None, 'users':users})
 
 
 def details(request, id):

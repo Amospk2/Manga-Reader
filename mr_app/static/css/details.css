@@ -9,6 +9,14 @@
     color: white;
 }
 
+.button-without-border {
+    width: 100%;
+    height: 35px;
+    background-color: #1f272b;
+    text-align: center;
+    padding: 5px;
+    color: white;
+}
 .divOverflow{
     height: 300px;
     overflow: auto;

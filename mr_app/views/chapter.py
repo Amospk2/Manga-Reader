@@ -40,3 +40,21 @@ def create_new_chapter(request, id):
 def create_chapter(request, id):
     users = User.objects.all()
     return render(request, 'manga_pages/create_chapter.html', {'user': request.user if request.user.is_authenticated else None, 'users':users, 'id':id})
+
+def view_chapter(request, capitulo):
+    try:
+        users = User.objects.all()
+        pages = Capitulo.objects.get(id=capitulo).page_set.all()
+    except Exception as ex:
+        return HttpResponseRedirect('/')
+    if(len(pages) == 0):
+        return HttpResponseRedirect('/manga/details/' + str(Capitulo.objects.get(id=capitulo).manga.id))
+    return render(request, 'manga_pages/view_chapter.html', \
+        {'user': request.user if request.user.is_authenticated else None, 'users':users, 'pages':pages, \
+        'page_info':{
+        'capitulo':Capitulo.objects.get(id=capitulo),\
+        'manga':Capitulo.objects.get(id=capitulo).manga, \
+        'count_of_chapters':Capitulo.objects.get(id=capitulo).manga.capitulo_set.count(),
+        'next':Capitulo.objects.get(id=capitulo).id + 1,
+        'prev':Capitulo.objects.get(id=capitulo).id - 1,
+        }})

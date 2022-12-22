@@ -23,7 +23,7 @@ class Manga(models.Model):
 
     
 class Capitulo(models.Model):
-    fk_manga = models.ForeignKey(Manga, on_delete=models.CASCADE)
+    manga = models.ForeignKey(Manga, on_delete=models.CASCADE)
     release_date = models.DateField(auto_now_add=True)
     title = models.CharField(max_length=50, unique=True, blank=False)
     description = models.TextField()
@@ -33,7 +33,7 @@ class Capitulo(models.Model):
         return self.title
 
 class Page(models.Model):
-    fk_capitulo = models.ForeignKey(Capitulo, on_delete=models.CASCADE)
+    capitulo = models.ForeignKey(Capitulo, on_delete=models.CASCADE)
     title = models.CharField(max_length=50, unique=True, blank=False)
     file = models.ImageField(upload_to='page/',)
 
@@ -42,7 +42,7 @@ class Page(models.Model):
 
 
 class Comment(models.Model):
-    fk_page = models.ForeignKey(Page, on_delete=models.CASCADE, default=None)
+    page = models.ForeignKey(Page, on_delete=models.CASCADE, default=None)
     title = models.CharField(max_length=50, unique=True, blank=False)
     content = models.TextField()
 
@@ -60,6 +60,6 @@ class ForumPost(models.Model):
 
 
 class ForumPostComment(models.Model):
-    fk_forumpost = models.ForeignKey(ForumPost, on_delete=models.CASCADE)
+    forumpost = models.ForeignKey(ForumPost, on_delete=models.CASCADE)
     content = models.TextField()
     publish_date = models.DateField(default=timezone.now)

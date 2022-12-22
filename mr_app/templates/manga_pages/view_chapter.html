@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h2>Manga: One, Capitulo: 1</h2>
+                <h2>Manga:{{ page_info.manga.title }}, Capitulo:{{page_info.capitulo.title}} </h2>
             </div>
         </div>
     </div>
@@ -25,11 +25,14 @@
                     <div class="col-lg-12">
                         <div class="painel-single-item">
                             <div class="down-content">
-                                <img class="img-fluid" alt="Responsive image" src='{% static "images/wallpaperflare-berserk.jpg" %}'>
-                                <img class="img-fluid" alt="Responsive image" src='{% static "images/wallpaperflare-berserk.jpg" %}'>
-                                <img class="img-fluid" alt="Responsive image" src='{% static "images/wallpaperflare-berserk.jpg" %}'>
-                                <img class="img-fluid" alt="Responsive image" src='{% static "images/wallpaperflare-berserk.jpg" %}'>
-
+                                {% for page in pages %}
+                                    <img class="img-fluid" alt="Responsive image" src='{{page.file.url}}'>
+                                {% endfor %}
+                                <a href="/manga/view-chapter/{{page_info.prev}}" class="button-without-border" type="button">< Capitulo Anterior</a>
+                                {% if page_info.capitulo.id < page_info.next %}
+                                    <a href="/manga/view-chapter/{{page_info.next}}" class="my-custom-button" type="button">Proximo Capitulo ></a>
+                                {% endif %}
+                                
                             </div>
                         </div>
                     </div>
@@ -39,6 +42,6 @@
 <section class="contact-us" id="contact">
     {% include 'main_pages/layouts/footer.html' %}
 </section>
-
+<link rel="stylesheet" href='{% static "css/details.css" %}'>
 
 {% endblock %}
