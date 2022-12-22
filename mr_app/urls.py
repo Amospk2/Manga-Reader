@@ -1,9 +1,10 @@
 from django.urls import path
-from .views.auth import auth, register_view, logout_view, login_view, edit
-from .views.user_crud import edit_user, user_crud, change_type_of_user, create_new_user, delete_user
-from .views.main_pages import home_view, about, categories
-from .views.manga import manga, create_manga, details, create_chapter, view_chapter, create_new_manga, delete_manga
-from .views.forum import forum, forum_post
+from .views.auth import *
+from .views.user_crud import *
+from .views.main_pages import *
+from .views.manga import *
+from .views.chapter import *
+from .views.forum import *
 
 urlpatterns = [
    #auth
@@ -31,6 +32,9 @@ urlpatterns = [
     path('manga/view-chapter/<int:id>', view_chapter, name="view_chapter"),
     path('manga/<int:id>/create-chapter/', create_chapter, name="create_chapter"),
     path('manga/create-new-manga/', create_new_manga, name='create_new_manga'),
+    path('manga/create-new-chapter/<int:id>', create_new_chapter, name='create_new_chapter'),
+    path('manga/edit-manga/<int:id>', edit_manga, name='edit_manga'),
+    path('manga/update-manga/', update_manga, name='update_manga'),
     path('manga/delete-manga/<int:id>', delete_manga, name='delete_manga'),
 
     #forum

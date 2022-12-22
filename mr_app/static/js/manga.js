@@ -1,4 +1,3 @@
-
 class MultipleUploader {
 
     #multipleUploader;
@@ -29,7 +28,7 @@ class MultipleUploader {
 
         // create multiple file input and make it hidden
         this.#$imagesUploadInput.type       = 'file';
-        this.#$imagesUploadInput.name       = `${fileNameFromTime()}[]`;
+        this.#$imagesUploadInput.name       = `${filesInpName}[]`;
         this.#$imagesUploadInput.multiple   = true;
         this.#$imagesUploadInput.accept     = "image/*";
         this.#$imagesUploadInput.style.setProperty('display','none','important');
@@ -110,11 +109,6 @@ class MultipleUploader {
 
         return this;
 
-    }
-    fileNameFromTime()
-    {
-        var date = new Date();
-        return date.getFullYear() + "" + (date.getMonth()+1) + "" +date.getDate() + "" + date.getMinutes() + "" + date.getSeconds() ;
     }
 
     clear()

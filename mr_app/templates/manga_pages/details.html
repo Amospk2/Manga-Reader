@@ -26,7 +26,7 @@
               <div class="down-content">
                 <div class="row">
                   <div class="col-lg-5 col-md-5 col-sm-6">
-                    <div class="white-box text-center"><img src='{% get_static_prefix %}/images/{{manga.image}}'
+                    <div class="white-box text-center"><img src='{{manga.image.url}}'
                         class="img-responsive"></div>
                   </div>
                   <div class="col-lg-7 col-md-7 col-sm-6">
@@ -49,20 +49,13 @@
 
                 <div class="list-group divOverflow">
 
-                  <a class="list-group-item list-group-item-action" href="/manga/view-chapter/1">
-                    Capitulo 01
-                  </a>
+                  {% for cap in capitulos %}
+                    <a class="list-group-item list-group-item-action" href="/manga/view-chapter/1">
+                      {{cap.title}}
+                    </a>
+                  {% endfor %}
 
 
-                  <a class="list-group-item list-group-item-action" 
-                    >
-                    Capitulo 02
-                  </a>
-
-
-                  <a class="list-group-item list-group-item-action" >
-                    Capitulo 03
-                  </a>
                 </div>
                 <a href="/manga/1/create-chapter" class="my-custom-button" type="button">Adicionar Novo Capitulo</a>
               </div>

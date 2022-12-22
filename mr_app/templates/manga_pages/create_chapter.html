@@ -26,27 +26,33 @@
                         <div class="painel-single-item">
                             <div class="down-content">
 
-                                <form action="" method="" enctype="multipart/form-data" id="my-form">
+                                <form action="{% url 'create_new_chapter' id %}" method="POST" enctype="multipart/form-data"
+                                    id="my-form">
+                                    {% csrf_token %}
+                                    <input name="id" id="id" type="hidden" value="{{id}}">
 
                                     <div class="col-lg-12">
                                         <fieldset>
-                                            <label style="margin-left:10px;">Titulo:</label>
-                                            <input class="input" name="title" type="text" id="title" required="">
+                                            <label style="margin-left:10px;">Nome:</label>
+                                            <input class="input" name="name" type="text" id="name" value="{{form.name}}"
+                                                required="">
                                         </fieldset>
                                     </div>
 
 
                                     <div class="col-lg-12">
                                         <label style="margin-left:10px;">Data de Lancamento:</label>
-                                        <input class="input" type="date" name="release_date" required>
+                                        <input class="input" type="date" id="release_date" name="release_date"
+                                            value="{{form.release_date|date:'Y-m-d'}}" required>
                                     </div>
 
+   
                                     <div class="col-lg-12">
                                         <fieldset>
                                             <label style="margin-left:10px;">Descrição:</label>
                                             <textarea name="description" type="text" style="background-color: #e9e3e3;"
                                                 class="form-control description" id="description" rows="5"
-                                                required=""></textarea>
+                                                required="">{% if form.description != None %} {{form.description}} {% endif %}</textarea>
                                         </fieldset>
                                     </div>
 
@@ -58,6 +64,7 @@
                                             <span class="mup-msg">Apenas imagens são permitidas!</span>
                                         </div>
                                     </div>
+                                    <button class="my-custom-button" type="submit">Criar Capitulo</button>
                                 </form>
 
                             </div>
@@ -69,7 +76,7 @@
 <section class="contact-us" id="contact">
     {% include 'main_pages/layouts/footer.html' %}
 </section>
-
+<link rel="stylesheet" href='{% static "css/details.css" %}'>
 <script src='{% static "js/manga.js" %}'></script>
 <script src='{% static "js/util.js" %}'></script>
 <link rel="stylesheet" href='{% static "css/manga.css" %}'>

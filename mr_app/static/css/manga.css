@@ -143,22 +143,3 @@
     border-radius: 15px;
     padding: 15px;
 }
-
-
-.stylebutton {
-    font-size: 13px;
-    color: #fff;
-    background-color: #e6e6e6;
-    padding: 12px 30px;
-    display: inline-block;
-    border-radius: 22px;
-    font-weight: 500;
-    text-transform: uppercase;
-    transition: all .3s;
-    border: none;
-    outline: none;
-}
-
-.stylebutton:hover {
-    opacity: 0.9;
-}
