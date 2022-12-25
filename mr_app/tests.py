@@ -125,3 +125,4 @@ class ForumPostCommentCase(TestCase):
             forumpost = ForumPost.objects.get(title="Fórum de testes")
         )
         self.assertEqual(forumPostComment.publish_date, datetime.date.today())
+        
