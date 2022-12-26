@@ -10,7 +10,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <h2>Problem Title</h2>
+        <h2>{{post.title}} - {{post.publish_date}}</h2>
       </div>
     </div>
   </div>
@@ -25,40 +25,65 @@
             <div class="painel-single-item">
               <div class="down-content">
 
-                <div class="list-group" style="overflow: auto; height: 350px;">
-
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="list-group" style="overflow: auto; height: 500px;">
+                  {% for comment in post_comments %}
+                  <a class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-1">Amospk1</h5>
-                      <small class="text-muted">3 days ago</small>
+
+                      <h5 class="mb-1">
+                        {% if comment.user == None %}
+                        Unknow
+                        {% else %}
+                        {{comment.user.username}}
+                        {% endif %}
+                      </h5>
+                      <small class="text-muted">{{comment.publish_date}}</small>
                     </div>
-                    <p class="mb-1">Ola Mundo </p>
+                    <p class="mb-1">{{comment.content}}</p>
                   </a>
                   <br>
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-1">Amospk2</h5>
-                      <small class="text-muted">3 days ago</small>
-                    </div>
-                    <p class="mb-1"> Eae! </p>
-                  </a>
-
+                  {% endfor %}
                 </div>
 
-                <br>
-                <div class="col-lg-12">
-                    <fieldset>
-                      <textarea name="message" type="text" class="form-control" id="message" placeholder="YOUR MESSAGE..." required="" rows="5  "></textarea>
+              </div>
+            </div>
+
+            <div class="painel-single-item" style="margin-top: 100px;">
+              <div class="down-content">
+                <ul class="messages">
+                  {% if messages %}
+                  <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                      <p style="color: red;">* {{ message }}</p>
+                      </li>
+                      {% endfor %}
+                  </ul>
+                  {% endif %}
+                </ul>
+                <form action="{% url 'add_comment_in_forum_post' post.id %}" method="POST"
+                  enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="col-lg-12">
+
+                    <label>Comentario:</label>
+                    <textarea id="content" name="content" type="text" class="form-control description" required
+                      rows="5"></textarea>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <fieldset align="center">
+                      <button type="submit" id="form-submit" class="button" style="width: 100%;">
+                        Enviar Comentário
+                      </button>
                     </fieldset>
                   </div>
-                  <button type="button" class="btn btn-outline-primary" style="width: 100%;">
-                    Enviar Comentário
-                  </button>
+                </form>
               </div>
             </div>
           </div>
 
-<!--           <div class="col-lg-12">
+          <!--           <div class="col-lg-12">
             <div class="pagination">
               <ul>
                 <li><a href="">1</a></li>
@@ -67,15 +92,15 @@
                 <li><a href=""><i class="fa fa-angle-right"></i></a></li>
               </ul>
             </div>
-          </div>  --> 
+          </div>  -->
 
         </div>
       </div>
     </div>
 </section>
-<section class="contact-us"
-    id="contact">
-    {% include 'main_pages/layouts/footer.html' %}
+<section class="contact-us" id="contact">
+  {% include 'main_pages/layouts/footer.html' %}
 </section>
 
+<link rel="stylesheet" href='{% static "css/submit-button-comment.css" %}'>
 {% endblock %}

@@ -1,11 +1,16 @@
 
 from django.contrib import messages
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from ..models import User
-from .auth import register_view, login_view, user_crud, edit_view
+from .auth import register_view, edit_view
 from .main_pages import home_view
 
 
+def user_crud(request):
+    users = User.objects.all()
+    return render(request, 'auth/user_crud.html', {'user': request.user if request.user.is_authenticated else None, 'users':users})
+
+    
 def create_new_user(request):
     email = request.POST.get('email')
     username = request.POST.get('username')

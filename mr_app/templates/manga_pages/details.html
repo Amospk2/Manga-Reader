@@ -50,7 +50,7 @@
                 <div class="list-group divOverflow">
 
                   {% for cap in capitulos %}
-                    <a class="list-group-item list-group-item-action" href="/manga/view-chapter/1">
+                    <a class="list-group-item list-group-item-action" href="/manga/view-chapter/{{cap.id}}">
                       {{cap.title}}
                     </a>
                   {% endfor %}

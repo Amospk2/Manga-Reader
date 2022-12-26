@@ -5,7 +5,6 @@
 {% block content %}
 {% load static %}
 
-
 <section class="heading-page header-text" id="top">
   <div class="container">
     <div class="row">
@@ -25,42 +24,60 @@
             <div class="painel-single-item">
               <div class="down-content">
 
-                <div class="list-group">
-                  <a href="/forum/1" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="list-group" style="overflow: auto; height: 250px;">
+                  {% for post in posts %}
+                  <a href="/forum/{{post.id}}"
+                    class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-1">List group item heading</h5>
-                      <small class="text-muted">3 days ago</small>
+                      <h5 class="mb-1">{{post.title}}</h5>
+                      <small class="text-muted">{{post.publish_date}}</small>
                     </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus
-                      varius blandit.</p>
-                    <small class="text-muted">Donec id elit non mi porta.</small>
+                    <p class="mb-1">{{post.content}}</p>
                   </a>
-                  <a href="/forum/1" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-1">List group item heading</h5>
-                      <small class="text-muted">3 days ago</small>
-                    </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus
-                      varius blandit.</p>
-                    <small class="text-muted">Donec id elit non mi porta.</small>
-                  </a>
+                  {% endfor %}
+
+
                 </div>
                 <br>
-                <div class="col-lg-12">
-                  <fieldset>
+              </div>
+            </div>
+
+
+            <div class="painel-single-item" style="margin-top: 100px;">
+              <div class="down-content">
+                <ul class="messages">
+                  {% if messages %}
+                  <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                      <p style="color: red;">* {{ message }}</p>
+                      </li>
+                      {% endfor %}
+                  </ul>
+                  {% endif %}
+                </ul>
+                <form action="{% url 'create_new_forum_post' %}" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="col-lg-12">
+
                     <label>Titulo:</label>
-                    <input name="message" type="text" class="form-control" id="message" required="" rows="1"></input>
-                  </fieldset>
-                  <br>
-                  <fieldset>
+                    <input id="title" name="title" type="text" class="form-control input" required></input>
+                    </fieldset>
+                    <br>
+
                     <label>Comentario:</label>
-                    <textarea name="message" type="text" class="form-control" id="message" required=""
-                      rows="5  "></textarea>
-                  </fieldset>
-                </div>
-                <button type="button" class="btn btn-outline-primary" style="width: 100%;">
-                  Enviar Comentário
-                </button>
+                    <textarea id="content" name="content" type="text" class="form-control description" required
+                      rows="5"></textarea>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <fieldset align="center">
+                      <button type="submit" id="form-submit" class="button" style="width: 100%;">
+                        Enviar Comentário
+                      </button>
+                    </fieldset>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -80,7 +97,8 @@
                 <li><a href=""><i class="fa fa-angle-right"></i></a></li>
               </ul>
             </div>
-          </div>  -->
+          </div> 
+    -->
 
   </div>
   </div>
@@ -89,5 +107,6 @@
 <section class="contact-us" id="contact">
   {% include 'main_pages/layouts/footer.html' %}
 </section>
+<link rel="stylesheet" href='{% static "css/submit-button-comment.css" %}'>
 
 {% endblock %}

@@ -27,10 +27,6 @@ def logout_view(request):
 def edit_view(request):
     return render(request, 'auth/edit.html')
 
-def user_crud(request):
-    users = User.objects.all()
-    return render(request, 'auth/user_crud.html', {'users':users})
-
 def edit(request, id):
     user = User.objects.get(id=id)
     return render(request, 'auth/edit.html', {'user':user})

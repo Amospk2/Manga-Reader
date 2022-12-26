@@ -3,8 +3,8 @@ from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 
 class User(AbstractUser):
-    tipo = models.CharField(max_length=30, unique=False, blank=True)
-    data_nascimento = models.DateField(auto_now_add=True)
+    type = models.CharField(max_length=30, unique=False, blank=True)
+    birth_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.username
@@ -42,10 +42,11 @@ class Page(models.Model):
 
 
 class Comment(models.Model):
-    page = models.ForeignKey(Page, on_delete=models.CASCADE, default=None)
-    title = models.CharField(max_length=50, unique=True, blank=False)
+    Capitulo = models.ForeignKey(Capitulo, on_delete=models.CASCADE, default=None)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, default=None)
     content = models.TextField()
-
+    publish_date = models.DateField(default=timezone.now)
+    
     def __str__(self):
         return self.title
 
@@ -61,5 +62,6 @@ class ForumPost(models.Model):
 
 class ForumPostComment(models.Model):
     forumpost = models.ForeignKey(ForumPost, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, default=None)
     content = models.TextField()
     publish_date = models.DateField(default=timezone.now)

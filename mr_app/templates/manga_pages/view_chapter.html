@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h2>Manga:{{ page_info.manga.title }}, Capitulo:{{page_info.capitulo.title}} </h2>
+                <h2>Manga:{{ page_info.manga.title }}, Capitulo:{{page_info.capitulo.title}}</h2>
             </div>
         </div>
     </div>
@@ -26,22 +26,85 @@
                         <div class="painel-single-item">
                             <div class="down-content">
                                 {% for page in pages %}
-                                    <img class="img-fluid" alt="Responsive image" src='{{page.file.url}}'>
+                                <img class="img-fluid" alt="Responsive image" src='{{page.file.url}}'>
                                 {% endfor %}
-                                <a href="/manga/view-chapter/{{page_info.prev}}" class="button-without-border" type="button">< Capitulo Anterior</a>
-                                {% if page_info.capitulo.id < page_info.next %}
-                                    <a href="/manga/view-chapter/{{page_info.next}}" class="my-custom-button" type="button">Proximo Capitulo ></a>
+                                <a href="/manga/view-chapter/{{page_info.prev}}" class="button-without-border"
+                                    type="button">
+                                    < Capitulo Anterior</a>
+                                        {% if page_info.capitulo.id < page_info.next %} <a
+                                            href="/manga/view-chapter/{{page_info.next}}" class="my-custom-button"
+                                            type="button">Proximo Capitulo >
+                                </a>
                                 {% endif %}
-                                
+                            </div>
+
+                            <div class="painel-single-item" style="margin-top: 100px;">
+                                <div class="down-content">
+                                    <ul class="messages">
+                                        {% if messages %}
+                                        <ul class="messages">
+                                            {% for message in messages %}
+                                            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                                                <p style="color: red;">* {{ message }}</p>
+                                                </li>
+                                                {% endfor %}
+                                        </ul>
+                                        {% endif %}
+                                    </ul>
+                                    <div class="list-group" {% if page_info.comments %}
+                                        style="overflow: auto; height: 450px;" {% endif %}>
+
+                                        {% for comment in page_info.comments %}
+                                        <a class="list-group-item list-group-item-action flex-column align-items-start">
+                                            <div class="d-flex w-100 justify-content-between">
+
+                                                <h5 class="mb-1">
+                                                    {% if comment.user == None %}
+                                                    Unknow
+                                                    {% else %}
+                                                    {{comment.user.username}}
+                                                    {% endif %}
+                                                </h5>
+                                                <small class="text-muted">{{comment.publish_date}}</small>
+                                            </div>
+                                            <p class="mb-1">{{comment.content}}</p>
+                                        </a>
+                                        <br>
+                                        {% endfor %}
+
+                                    </div>
+                                    <form action="{% url 'add_new_comment_for_chapter' page_info.capitulo.id %}"
+                                        method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="col-lg-12">
+
+                                            <label>Comentario:</label>
+                                            <textarea id="content" name="content" type="text"
+                                                class="form-control description" required rows="5"></textarea>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <fieldset align="center">
+                                                <button type="submit" id="form-submit" class="button"
+                                                    style="width: 100%;">
+                                                    Enviar Comentário
+                                                </button>
+                                            </fieldset>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 </section>
+
 <section class="contact-us" id="contact">
     {% include 'main_pages/layouts/footer.html' %}
 </section>
 <link rel="stylesheet" href='{% static "css/details.css" %}'>
+<link rel="stylesheet" href='{% static "css/submit-button-comment.css" %}'>
+
 
 {% endblock %}

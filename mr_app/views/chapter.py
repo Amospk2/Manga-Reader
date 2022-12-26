@@ -1,5 +1,5 @@
 from django.utils.datastructures import MultiValueDictKeyError
-from ..models import Manga, User, Capitulo, Page
+from ..models import Manga, User, Capitulo, Page, Comment
 from django.contrib import messages
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
@@ -57,4 +57,19 @@ def view_chapter(request, capitulo):
         'count_of_chapters':Capitulo.objects.get(id=capitulo).manga.capitulo_set.count(),
         'next':Capitulo.objects.get(id=capitulo).id + 1,
         'prev':Capitulo.objects.get(id=capitulo).id - 1,
+        'comments':Capitulo.objects.get(id=capitulo).comment_set.all()
         }})
+
+def add_new_comment_for_chapter(request, id):
+    try:
+        print(id)
+        comment = Comment(
+            Capitulo=Capitulo.objects.get(id=id),
+            user=request.user if request.user.is_authenticated else None,
+            content = request.POST.get('content')
+        )
+        comment.save()
+    except Exception as ex:
+        messages.error(request=request, message="Os comentarios devem ter titulos unicos!")
+
+    return HttpResponseRedirect('/manga/view-chapter/'+str(id))
