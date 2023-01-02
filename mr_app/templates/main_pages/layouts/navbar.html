@@ -1,5 +1,5 @@
- <!-- ***** Header Area Start ***** -->
- <header class="header-area header-sticky">
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -12,24 +12,35 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="/" class="{% if request.path == '/' %} active {% endif %}">Home</a></li>
-                        <li><a href="/categories" class="{% if request.path == '/categories/' %} active {% endif %}">Categorias</a></li>
-                        <li><a href="/about" class="{% if request.path == '/about/' %} active {% endif %}">Sobre nós</a></li>
-                        <li class="has-sub {% if request.path == '/manga/' %} active {% endif %}">
+                        <li><a href="/categories"
+                                class="{% if request.path == '/categories/' %} active {% endif %}">Categorias</a></li>
+                        <li><a href="/about" class="{% if request.path == '/about/' %} active {% endif %}">Sobre nós</a>
+                        </li>
+                        {% if perms.mr_app.change_user %}
+                        <li class="has-sub">
                             <a href="javascript:void(0)">Manga CRUD</a>
                             <ul class="sub-menu">
                                 <li><a href="/manga">Visualizar Mangas</a></li>
                                 <li><a href="/manga/create-manga/">Criar Novo Manga</a></li>
                             </ul>
                         </li>
-                        <li><a href="/user_crud/" class="{% if request.path == '/user_crud/' %} active {% endif %}">CRUD Usuário</a></li>
-                        <li><a href="/forum/" class="{% if request.path == '/forum/' %} active {% endif %}">Forum</a></li>
-                        {% if user %} 
-                        <li><a href="/logout">Logout</a></li> 
-                        {% elif not user %} 
-                        <li><a href="/login">login</a></li> 
                         {% endif %}
-                        
-                    </ul>        
+
+                        {% if perms.mr_app.change_manga %}
+                        <li>
+                            <a href="/user_crud/" class="{% if request.path == '/user_crud/' %} active {% endif %}">CRUD
+                                Usuário</a>
+                        </li>
+                        {% endif %}
+                        <li><a href="/forum/" class="{% if request.path == '/forum/' %} active {% endif %}">Forum</a>
+                        </li>
+                        {% if user %}
+                        <li><a href="/logout">Logout</a></li>
+                        {% elif not user %}
+                        <li><a href="/login">login</a></li>
+                        {% endif %}
+
+                    </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>

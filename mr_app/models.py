@@ -46,9 +46,6 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, default=None)
     content = models.TextField()
     publish_date = models.DateField(default=timezone.now)
-    
-    def __str__(self):
-        return self.title
 
 
 class ForumPost(models.Model):

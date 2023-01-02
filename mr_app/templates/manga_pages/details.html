@@ -57,9 +57,14 @@
 
 
                 </div>
+                
+                {% if perms.manga.change_manga %}
                 <a href="/manga/edit-manga/{{manga.id}}" class="button-without-border" type="button">Editar Manga</a>
+                {% endif %}
                 <br>
+                {% if perms.capitulo.add_capitulo %}
                 <a href="/manga/{{manga.id}}/create-chapter" class="my-custom-button" type="button">Adicionar Novo Capitulo</a>
+                {% endif %}
               </div>
 
             </div>

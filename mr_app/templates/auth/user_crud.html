@@ -44,11 +44,11 @@
                         <td>{{user.id}}</td>
                         <td>{{user.username}}</td>
                         <td>{{user.email}}</td>
-                        <td>{{user.tipo}}</td>
+                        <td>{{user.type}}</td>
                         <td>{{user.data_nascimento}}</td>
                         <td>
                           <a href="/edit/{{user.id}}" class="btn btn-outline-primary"><span>Edit</span></a>
-                          {% if user.tipo == "Admin" %}
+                          {% if user.type == "Admin" %}
                           <a href="/change_type_of_user/{{user.id}}" class="btn btn-outline-primary"><span>Set As
                               usuário</span></a>
                           {% else %}

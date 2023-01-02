@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from ..models import ForumPost, ForumPostComment
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+
 
 def forum(request):
     posts = ForumPost.objects.all()
@@ -17,6 +19,7 @@ def forum_post(request, id):
     'post':post, 
     'post_comments':post.forumpostcomment_set.all()})
 
+@login_required(login_url='/login')
 def create_new_forum_post(request):
     title = request.POST.get('title')
     content = request.POST.get('content')
@@ -32,7 +35,7 @@ def create_new_forum_post(request):
 
 
 
-
+@login_required(login_url='/login')
 def add_comment_in_forum_post(request, id):
     content = request.POST.get('content')
     if content != None:

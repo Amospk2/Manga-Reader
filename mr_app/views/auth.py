@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, logout, login
 from ..models import User
 from .main_pages import home_view
-# Create your views here.
+from django.contrib.auth.decorators import login_required, permission_required
 
 
 def is_guess(use):
@@ -24,9 +24,12 @@ def logout_view(request):
     logout(request)
     return redirect(login_view)
 
+
 def edit_view(request):
     return render(request, 'auth/edit.html')
 
+@login_required(login_url='/login')
+@permission_required('user.change_user', login_url='/')
 def edit(request, id):
     user = User.objects.get(id=id)
     return render(request, 'auth/edit.html', {'user':user})

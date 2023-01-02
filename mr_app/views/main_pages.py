@@ -29,7 +29,7 @@ def home_view(request):
         tags = "Ação, Comédia, Superhero comics",
         image = "one.jpg"),
     ]
-
+    print(request.user.get_all_permissions())
     return render(request, 'main_pages/home.html', {'user': request.user if request.user.is_authenticated else None, 'mangas':mockupMangas})
 
 

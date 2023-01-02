@@ -3,9 +3,11 @@ from ..models import Manga, User, Capitulo, Page, Comment
 from django.contrib import messages
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required, permission_required
 
+@login_required
+@permission_required(perm='mr_app.add_capitulo', raise_exception=True)
 def create_new_chapter(request, id):
-
     try:
         capitulo = Capitulo(
             fk_manga=Manga.objects.get(id=7),
@@ -37,6 +39,8 @@ def create_new_chapter(request, id):
     
     return HttpResponseRedirect('/manga/details/'+id)
 
+@login_required
+@permission_required(perm='mr_app.add_capitulo', raise_exception=True)
 def create_chapter(request, id):
     users = User.objects.all()
     return render(request, 'manga_pages/create_chapter.html', {'user': request.user if request.user.is_authenticated else None, 'users':users, 'id':id})
@@ -60,6 +64,7 @@ def view_chapter(request, capitulo):
         'comments':Capitulo.objects.get(id=capitulo).comment_set.all()
         }})
 
+@login_required
 def add_new_comment_for_chapter(request, id):
     try:
         print(id)
