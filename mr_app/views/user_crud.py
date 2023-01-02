@@ -7,12 +7,13 @@ from .main_pages import home_view
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.decorators import login_required, permission_required
+from .utils import *
 
 @login_required
 @permission_required(perm='mr_app.change_user', raise_exception=True)
 def user_crud(request):
     users = User.objects.all()
-    return render(request, 'auth/user_crud.html', {'user': request.user if request.user.is_authenticated else None, 'users':users, 'user_has_all_perms':request.user.has_perms(['user.add_user', 'user.change_user', 'user.delete_user', 'user.view_user'])})
+    return render(request, 'auth/user_crud.html', {'user': check_if_has_user_activate(request), 'users':users, 'user_has_all_perms':request.user.has_perms(['user.add_user', 'user.change_user', 'user.delete_user', 'user.view_user'])})
 
     
 def create_new_user(request):

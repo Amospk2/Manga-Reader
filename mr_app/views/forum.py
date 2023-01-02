@@ -3,19 +3,19 @@ from ..models import ForumPost, ForumPostComment
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-
+from .utils import *
 
 def forum(request):
     posts = ForumPost.objects.all()
     return render(request, 'forum/forum.html', 
-    {'user': request.user if request.user.is_authenticated else None,
+    {'user': check_if_has_user_activate(request),
     'posts':posts,})
 
 
 def forum_post(request, id):
     post = ForumPost.objects.get(id=id)
     return render(request, 'forum/forum_post_details.html', 
-    {'user': request.user if request.user.is_authenticated else None,
+    {'user': check_if_has_user_activate(request),
     'post':post, 
     'post_comments':post.forumpostcomment_set.all()})
 
@@ -42,7 +42,7 @@ def add_comment_in_forum_post(request, id):
         try:
             forum_post = ForumPostComment(
                 forumpost=ForumPost.objects.get(id=id),
-                user=request.user if request.user.is_authenticated else None,
+                user=check_if_has_user_activate(request),
                 content=content
                 )
             forum_post.save()

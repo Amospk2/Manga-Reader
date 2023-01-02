@@ -37,6 +37,7 @@ urlpatterns = [
     path('manga/update-manga/', update_manga, name='update_manga'),
     path('manga/delete-manga/<int:id>', delete_manga, name='delete_manga'),
     path('manga/chapter/add-new-comment/<int:id>', add_new_comment_for_chapter, name='add_new_comment_for_chapter'),
+    path('manga/delete-chapter/<int:id>', delete_chapter, name='delete_chapter'),
 
     #forum
     path('forum/', forum, name="forum"),

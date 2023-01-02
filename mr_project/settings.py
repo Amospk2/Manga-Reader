@@ -107,11 +107,9 @@ AUTHENTICATION_BACKENDS = ["mr_app.backends.CustomUserModelBackend"]
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
-USE_I18N = True
-
-USE_TZ = True
+USE_TZ = False
 
 AUTH_USER_MODEL = 'mr_app.User'
 

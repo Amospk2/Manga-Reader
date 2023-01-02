@@ -1,9 +1,7 @@
-from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, logout, login
+from django.shortcuts import render
 from ..models import Manga
 from datetime import datetime
-# Create your views here.
+from .utils import *
 
 
 def home_view(request):
@@ -29,12 +27,11 @@ def home_view(request):
         tags = "Ação, Comédia, Superhero comics",
         image = "one.jpg"),
     ]
-    print(request.user.get_all_permissions())
-    return render(request, 'main_pages/home.html', {'user': request.user if request.user.is_authenticated else None, 'mangas':mockupMangas})
+    return render(request, 'main_pages/home.html', {'user': check_if_has_user_activate(request), 'mangas':mockupMangas})
 
 
 def about(request):
-    return render(request, 'main_pages/about.html', {'user': request.user if request.user.is_authenticated else None})
+    return render(request, 'main_pages/about.html', {'user': check_if_has_user_activate(request)})
 
 def categories(request):
     mockupMangas = [
@@ -46,4 +43,4 @@ def categories(request):
         image = "bokunohero.jpg"),
     ]
 
-    return render(request, 'main_pages/categories.html', {'user': request.user if request.user.is_authenticated else None, 'mangas':mockupMangas})
+    return render(request, 'main_pages/categories.html', {'user': check_if_has_user_activate(request), 'mangas':mockupMangas})

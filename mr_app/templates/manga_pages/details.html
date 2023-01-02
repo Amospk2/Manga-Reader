@@ -26,57 +26,52 @@
               <div class="down-content">
                 <div class="row">
                   <div class="col-lg-5 col-md-5 col-sm-6">
-                    <div class="white-box text-center"><img src='{{manga.image.url}}'
-                        class="img-responsive"></div>
+                    <div class="white-box text-center"><img src='{{manga.image.url}}' class="img-responsive"></div>
                   </div>
                   <div class="col-lg-7 col-md-7 col-sm-6">
                     <h4 class="box-title mt-5">Descrição:</h4>
                     <p>{{manga.description}}</p>
                   </div>
-
                 </div>
-
                 <h3 class="box-title mt-5">Tags</h3>
                 <br>
                 <div class="mb-3">
                   {% for items in manga.tags %}
-                    <a class="btn btn-outline-primary"><span>{{items}}</span></a>
+                  <a class="btn btn-outline-primary"><span>{{items}}</span></a>
                   {% endfor %}
                 </div>
-
                 <h3 class="box-title mt-5">Capitulos</h3>
                 <br>
-
-                <div class="list-group divOverflow">
-
+                <div class="list-group" style="height: 500px; overflow: auto;">
                   {% for cap in capitulos %}
-                    <a class="list-group-item list-group-item-action" href="/manga/view-chapter/{{cap.id}}">
-                      {{cap.title}}
-                    </a>
+                  <a class="list-group-item list-group-item-action" href="/manga/view-chapter/{{cap.id}}">
+                    <h4>{{cap.title}}</h4>
+                  </a>
+                  {% if perms.manga.change_manga or request.user in manga.managers.all %}
+                  <a class="btn btn-outline-primary" href="/manga/delete-chapter/{{cap.id}}">
+                    delete
+                  </a>
+                  <br>
+                  {% endif %}
                   {% endfor %}
-
-
                 </div>
-                
-                {% if perms.manga.change_manga %}
+                {% if perms.manga.change_manga or request.user in manga.managers.all %}
                 <a href="/manga/edit-manga/{{manga.id}}" class="button-without-border" type="button">Editar Manga</a>
                 {% endif %}
                 <br>
-                {% if perms.capitulo.add_capitulo %}
-                <a href="/manga/{{manga.id}}/create-chapter" class="my-custom-button" type="button">Adicionar Novo Capitulo</a>
+                {% if perms.capitulo.add_capitulo or request.user in manga.managers.all%}
+                <a href="/manga/{{manga.id}}/create-chapter" class="my-custom-button" type="button">Adicionar Novo
+                  Capitulo</a>
                 {% endif %}
               </div>
-
             </div>
           </div>
-
         </div>
       </div>
     </div>
 </section>
-<section class="contact-us"
-    id="contact">
-    {% include 'main_pages/layouts/footer.html' %}
+<section class="contact-us" id="contact">
+  {% include 'main_pages/layouts/footer.html' %}
 </section>
 
 <link rel="stylesheet" href='{% static "css/details.css" %}'>

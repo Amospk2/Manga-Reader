@@ -1,49 +1,47 @@
+import os
 from django.utils.datastructures import MultiValueDictKeyError
 from ..models import Manga, User, Capitulo, Page, Comment
 from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required, permission_required
+from .utils import *
 
 @login_required
-@permission_required(perm='mr_app.add_capitulo', raise_exception=True)
 def create_new_chapter(request, id):
-    try:
-        capitulo = Capitulo(
-            fk_manga=Manga.objects.get(id=7),
-            title=request.POST.get('name'),
-            release_date=request.POST.get('release_date'),
-            description=request.POST.get('description'),
-        )
-        capitulo.save()
-
-        for index, value in enumerate(request.FILES.getlist('images[]')):
-            Page.objects.create(
-                fk_capitulo=capitulo,
-                title=capitulo.title + "_" + str(index),
-                file=value
+    if request.user in Manga.objects.get(id=id).managers.all() or request.user.has_perm('mr_app.change_manga'):
+        try:
+            capitulo = Capitulo(
+                manga=Manga.objects.get(id=7),
+                title=request.POST.get('name'),
+                release_date=request.POST.get('release_date'),
+                description=request.POST.get('description'),
             )
-    except MultiValueDictKeyError as ex:
-        messages.error(request=request, message="Você deve escolhar uma imagem para o manga!")
-        users = User.objects.all()
-        form = Manga.objects.get(id=id)
-        tags = form.tags
-        return render(request, 'manga_pages/edit_manga.html', {'user': request.user if request.user.is_authenticated else None, 'users':users, 'form':form, 'tags':tags})
+            capitulo.save()
 
-    except Exception as ex:
-        messages.error(request=request, message="Já existe um manga com este nome!")
-        users = User.objects.all()
-        form = Manga.objects.get(id=id)
-        tags = form.tags
-        return render(request, 'manga_pages/edit_manga.html', {'user': request.user if request.user.is_authenticated else None, 'users':users, 'form':form, 'tags':tags})
-    
-    return HttpResponseRedirect('/manga/details/'+id)
+            for index, value in enumerate(request.FILES.getlist('images[]')):
+                Page.objects.create(
+                    capitulo=capitulo,
+                    title=capitulo.title + "_" + str(index),
+                    file=value
+                )
+        except MultiValueDictKeyError as ex:
+            messages.error(request=request, message="Você deve escolhar uma imagem para o manga!")
+            return render(create_chapter(request, id))
+        except Exception as ex:
+            print(ex)
+            return HttpResponseRedirect('/manga/details/'+str(id))
+        return HttpResponseRedirect('/manga/details/'+str(id))
+    else:
+        return HttpResponseRedirect('/')
 
 @login_required
-@permission_required(perm='mr_app.add_capitulo', raise_exception=True)
 def create_chapter(request, id):
     users = User.objects.all()
-    return render(request, 'manga_pages/create_chapter.html', {'user': request.user if request.user.is_authenticated else None, 'users':users, 'id':id})
+    if request.user in Manga.objects.get(id=id).managers.all() or request.user.has_perm('mr_app.add_manga'):
+        return render(request, 'manga_pages/create_chapter.html', {'user': check_if_has_user_activate(request), 'users':users, 'manga':Manga.objects.get(id=id)})
+    return HttpResponseRedirect('/')
+    
 
 def view_chapter(request, capitulo):
     try:
@@ -54,7 +52,7 @@ def view_chapter(request, capitulo):
     if(len(pages) == 0):
         return HttpResponseRedirect('/manga/details/' + str(Capitulo.objects.get(id=capitulo).manga.id))
     return render(request, 'manga_pages/view_chapter.html', \
-        {'user': request.user if request.user.is_authenticated else None, 'users':users, 'pages':pages, \
+        {'user': check_if_has_user_activate(request), 'users':users, 'pages':pages, \
         'page_info':{
         'capitulo':Capitulo.objects.get(id=capitulo),\
         'manga':Capitulo.objects.get(id=capitulo).manga, \
@@ -67,10 +65,9 @@ def view_chapter(request, capitulo):
 @login_required
 def add_new_comment_for_chapter(request, id):
     try:
-        print(id)
         comment = Comment(
             Capitulo=Capitulo.objects.get(id=id),
-            user=request.user if request.user.is_authenticated else None,
+            user=check_if_has_user_activate(request),
             content = request.POST.get('content')
         )
         comment.save()
@@ -78,3 +75,12 @@ def add_new_comment_for_chapter(request, id):
         messages.error(request=request, message="Os comentarios devem ter titulos unicos!")
 
     return HttpResponseRedirect('/manga/view-chapter/'+str(id))
+
+def delete_chapter(request, id):
+    cap = Capitulo.objects.get(id=id)
+    manga = Capitulo.objects.get(id=id).manga_id
+    cap.delete()
+    return HttpResponseRedirect('/manga/details/'+str(manga))
+    
+    
+    
