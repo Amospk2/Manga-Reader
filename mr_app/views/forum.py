@@ -11,7 +11,6 @@ def forum(request):
     {'user': check_if_has_user_activate(request),
     'posts':posts,})
 
-
 def forum_post(request, id):
     post = ForumPost.objects.get(id=id)
     return render(request, 'forum/forum_post_details.html', 
@@ -28,12 +27,10 @@ def create_new_forum_post(request):
             ForumPost.objects.create(title=title, content=content)
         except:
             messages.error(request=request, message="Este titulo já esta sendo utilizado em outra postagem!")
-
     else:
         messages.error(request=request, message="Preencha todos os campos!")
+
     return redirect(forum)
-
-
 
 @login_required(login_url='/login')
 def add_comment_in_forum_post(request, id):
@@ -49,12 +46,23 @@ def add_comment_in_forum_post(request, id):
         except Exception as ex:
             print(ex)
             messages.error(request=request, message="Este titulo já esta sendo utilizado em outra postagem!")
-
     else:
         messages.error(request=request, message="Preencha todos os campos!")
-
     
     return HttpResponseRedirect('/forum/'+str(id))
 
+@login_required(login_url='/login')
+def remove_forum_post(request, id):
+    ForumPost.objects.filter(id=id).delete()
 
+    return redirect(forum)
 
+@login_required(login_url='/login')
+def remove_comment_in_forum_post(request, id):
+    forum_post_comment = ForumPostComment.objects.get(id=id)
+
+    forum_post_id = forum_post_comment.forumpost.id
+
+    forum_post_comment.delete()
+
+    return HttpResponseRedirect('/forum/' + str(forum_post_id))

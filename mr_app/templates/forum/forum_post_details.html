@@ -30,15 +30,25 @@
                   <a class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
 
-                      <h5 class="mb-1">
-                        {% if comment.user == None %}
-                        Unknow
-                        {% else %}
-                        {{comment.user.username}}
-                        {% endif %}
-                      </h5>
-                      <small class="text-muted">{{comment.publish_date}}</small>
+                      <div class="row flex-grow-1">
+                        <h5 class="col mb-1">
+                          {% if comment.user == None %}
+                          Unknown
+                          {% else %}
+                          {{comment.user.username}}
+                          {% endif %}
+                        </h5>
+                        <div class="col d-flex align-items-right justify-content-end">
+                          <small class="text-muted col-md-auto">{{comment.publish_date}}</small>
+                          <form action="{% url 'remove_comment_in_forum_post' comment.id %}" method="DELETE">
+                            <input class="mt-auto" type="submit" value="X"/>
+                          </form>
+                        </div>
+                      </div>
                     </div>
+                    <!-- <small class="d-flex justify-content-between" type="submit">
+                      <a href="{% url 'remove_comment_in_forum_post' comment.id %}"> X </a>
+                    </small> -->
                     <p class="mb-1">{{comment.content}}</p>
                   </a>
                   <br>

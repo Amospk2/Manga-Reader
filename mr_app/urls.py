@@ -43,5 +43,7 @@ urlpatterns = [
     path('forum/', forum, name="forum"),
     path('forum/<int:id>', forum_post, name="forum_post"),
     path('create-new-forum-post/', create_new_forum_post, name='create_new_forum_post'),
-    path('add-comment-in-forum-post/<int:id>', add_comment_in_forum_post, name='add_comment_in_forum_post')
+    path('add-comment-in-forum-post/<int:id>', add_comment_in_forum_post, name='add_comment_in_forum_post'),
+    path('remove-forum-post/<int:id>', remove_forum_post, name='remove_forum_post'),
+    path('remove-comment-in-forum-post/<int:id>', remove_comment_in_forum_post, name='remove_comment_in_forum_post')
 ]
