@@ -30,18 +30,15 @@
                     class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                       <h5 class="mb-1">{{post.title}}</h5>
-                      <div class="col d-flex align-items-right justify-content-end">
-                        <small class="text-muted">{{post.publish_date}}</small>
-                        <form action="{% url 'remove_forum_post' post.id %}" method="DELETE">
-                          <input class="mt-auto" type="submit" value="X"/>
-                        </form>
-                      </div>
                     </div>
                     <p class="mb-1">{{post.content}}</p>
                   </a>
+                  {% if user.is_superuser == 1 %}
+                  <a class="btn btn-outline-primary" href="/remove-forum-post/{{post.id}}">
+                    delete
+                  </a>
+                  {% endif %}
                   {% endfor %}
-
-
                 </div>
                 <br>
               </div>

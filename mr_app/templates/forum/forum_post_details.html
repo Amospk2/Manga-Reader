@@ -38,19 +38,15 @@
                           {{comment.user.username}}
                           {% endif %}
                         </h5>
-                        <div class="col d-flex align-items-right justify-content-end">
-                          <small class="text-muted col-md-auto">{{comment.publish_date}}</small>
-                          <form action="{% url 'remove_comment_in_forum_post' comment.id %}" method="DELETE">
-                            <input class="mt-auto" type="submit" value="X"/>
-                          </form>
-                        </div>
                       </div>
                     </div>
-                    <!-- <small class="d-flex justify-content-between" type="submit">
-                      <a href="{% url 'remove_comment_in_forum_post' comment.id %}"> X </a>
-                    </small> -->
                     <p class="mb-1">{{comment.content}}</p>
                   </a>
+                  {% if user.is_superuser == 1 %}
+                  <a class="btn btn-outline-primary" href="/remove-comment-in-forum-post/{{comment.id}}">
+                    delete
+                  </a>
+                  {% endif %}
                   <br>
                   {% endfor %}
                 </div>
