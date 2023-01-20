@@ -34,13 +34,6 @@ font & reset css
 reset
 --------------------------------------------- 
 */
-
-
-/*
-main bg from:https://emotioncard.com.br/fundo-preto-plano-de-fundo/
-*/
-
-
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div
 pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q,
 s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
@@ -178,22 +171,6 @@ body {
   opacity: 0.9;
 }
 
-.main-button-yellow a {
-  font-size: 13px;
-  color: #fff;
-  background-color: #f5a425;
-  padding: 12px 30px;
-  display: inline-block;
-  border-radius: 22px;
-  font-weight: 500;
-  text-transform: uppercase;
-  transition: all .3s;
-}
-
-.main-button-yellow a:hover {
-  opacity: 0.9;
-}
-
 .section-heading h2 {
   line-height: 40px;
   margin-top: 0px;
@@ -212,43 +189,6 @@ body {
 header
 --------------------------------------------- 
 */
-
-.sub-header {
-  background-color: #1f272b;
-  position: relative;
-  z-index: 1111;
-}
-
-.sub-header .left-content p {
-  color: #fff;
-  padding: 8px 0px;
-  font-size: 13px;
-}
-
-.sub-header .right-icons {
-  text-align: right;
-  padding: 8px 0px;
-}
-
-.sub-header .right-icons ul li {
-  display: inline-block;
-  margin-left: 15px;
-}
-
-.sub-header .right-icons ul li a {
-  color: #fff;
-  font-size: 14px;
-  transition: all .3s;
-}
-
-.sub-header .right-icons ul li a:hover {
-  color: #f5a425;
-}
-
-.sub-header .left-content p em {
-   font-style: normal;
-   color: #f5a425;
-}
 
 .background-header {
   background-color: #fff!important;
@@ -895,7 +835,7 @@ upcoming meetings
 */
 
 section.upcoming-meetings {
-  background-image: url(../images/plano-de-fundo-preto28.jpeg);
+  background-image: url(../images/meetings-bg.jpg);
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -1114,7 +1054,7 @@ courses
 */
 
 section.our-courses {
-  background-image: url(../images/plano-de-fundo-preto28.jpeg);
+  background-image: url(../images/meetings-bg.jpg);
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -1254,77 +1194,6 @@ section.our-courses {
   line-height: 50px;
 }
 
-
-/*
----------------------------------------------
-our facts
----------------------------------------------
-*/
-
-section.our-facts {
-  background-image: url(../images/facts-bg.jpg);
-  background-position: center center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 140px 0px 125px 0px;
-}
-
-section.our-facts h2 {
-  font-size: 38px;
-  color: #fff;
-  line-height: 50px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  margin-bottom: 50px;
-}
-
-.count-area-content {
-  text-align: center;
-  background-color: rgba(250,250,250,0.15);
-  border-radius: 20px;
-  padding: 25px 30px 35px 30px;
-  margin: 15px 0px;
-}
-
-.percentage .count-digit:after {
-  content: '%';
-  margin-left: 3px;
-}
-
-.count-digit {
-    margin: 5px 0px;
-    color: #f5a425;
-    font-weight: 700;
-    font-size: 36px;
-}
-.count-title {
-    font-size: 18px;
-    font-weight: 500;
-    color: #fff;
-    letter-spacing: 0.5px;
-}
-
-.new-students {
-  margin-top: 45px;
-}
-
-section.our-facts .video {
-  text-align: center;
-  margin-left: 70px;
-  background-image: url(../images/video-item-bg.jpg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  border-radius: 20px;
-}
-
-section.our-facts .video img {
-  padding: 170px 0px;
-  max-width: 56px;
-}
-
-
 /* 
 ---------------------------------------------
 contact us
@@ -1332,7 +1201,7 @@ contact us
 */
 
 section.contact-us {
-  background-image: url(../images/plano-de-fundo-preto28.jpeg);
+  background-image: url(../images/meetings-bg.jpg);
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -1440,9 +1309,9 @@ section.contact-us .right-info ul li span {
 
 .footer {
   text-align: center;
+  margin-top: 140px;
   border-top: 1px solid rgba(250,250,250,0.15);
   padding: 50px 0px;
-  background-color: rgba(128, 128, 128, 0.493);
 }
 .footer p {
   text-transform: uppercase;
@@ -1462,11 +1331,12 @@ heading page
 */
 
 section.heading-page {
-  background-image: url(../images/plano-de-fundo-preto28.jpeg);
+  background-image: url(../images/heading-bg.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 200px;
+  padding-top: 230px;
+  padding-bottom: 110px;
   text-align: center;
 }
 
@@ -1480,8 +1350,8 @@ section.heading-page h6 {
 }
 
 section.heading-page h2 {
-  margin-top: 5px;
-  margin-bottom: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   font-size: 36px;
   text-transform: uppercase;
   font-weight: 800;
@@ -1496,22 +1366,22 @@ upcoming meetings page
 ---------------------------------------------
 */
 
-section.painel {
-  background-image: url(../images/plano-de-fundo-preto28.jpeg);
+section.meetings-page {
+  background-image: url(../images/meetings-page-bg.jpg);
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 40px;
+  padding-top: 140px;
   padding-bottom: 0px;
 }
 
-section.painel .filters {
+section.meetings-page .filters {
   text-align: center;
   margin-bottom: 60px;
 }
 
-section.painel .filters li {
+section.meetings-page .filters li {
   font-size: 13px;
   color: #a12c2f;
   background-color: #fff;
@@ -1525,24 +1395,24 @@ section.painel .filters li {
   margin: 0px 3px;
 }
 
-section.painel .filters ul li.active,
-section.painel .filters ul li:hover {
+section.meetings-page .filters ul li.active,
+section.meetings-page .filters ul li:hover {
   background-color: #a12c2f;
   color: #fff;
 }
 
-section.painel .pagination {
+section.meetings-page .pagination {
   text-align: center;
   width: 100%;
   margin-top: 30px;
   display: inline-block;
 }
 
-section.painel .pagination ul li {
+section.meetings-page .pagination ul li {
   display: inline-block;
 }
 
-section.painel .pagination ul li a {
+section.meetings-page .pagination ul li a {
   width: 40px;
   height: 40px;
   background-color: #fff;
@@ -1556,38 +1426,38 @@ section.painel .pagination ul li a {
   transition: all .3s;
 }
 
-section.painel .main-button-red {
+section.meetings-page .main-button-red {
   text-align: center;
 }
 
-section.painel .main-button-red a {
+section.meetings-page .main-button-red a {
   padding: 12px 60px;
   text-align: center;
   margin-top: 30px;
 }
 
-section.painel .pagination ul li.active a,
-section.painel .pagination ul li a:hover {
+section.meetings-page .pagination ul li.active a,
+section.meetings-page .pagination ul li a:hover {
   background-color: #a12c2f;
   color: #fff;
 }
 
-.painel-single-item .thumb {
+.meeting-single-item .thumb {
   position: relative;
 }
 
-.painel-single-item .thumb img {
+.meeting-single-item .thumb img {
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
 }
 
-.painel-single-item .thumb .price {
+.meeting-single-item .thumb .price {
   position: absolute;
   left: 20px;
   top: 20px;
 }
 
-.painel-single-item .thumb .price span {
+.meeting-single-item .thumb .price span {
   font-size: 16px;
   color: #1f272b;
   font-weight: 600;
@@ -1596,14 +1466,14 @@ section.painel .pagination ul li a:hover {
   border-radius: 10px;
 }
 
-.painel-single-item .down-content {
-  margin-top: -70px;
+.meeting-single-item .down-content {
   background-color: #fff;
   padding: 40px;
-  border-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
-.painel-single-item .thumb .date {
+.meeting-single-item .thumb .date {
   position: absolute;
   background-color: rgba(250,250,250,0.9);
   width: 80px;
@@ -1615,21 +1485,21 @@ section.painel .pagination ul li a:hover {
   top: 20px;
 }
 
-.painel-single-item .thumb .date h6 {
+.meeting-single-item .thumb .date h6 {
   font-size: 13px;
   text-transform: uppercase;
   font-weight: 600;
   color: #a12c2f;
 }
 
-.painel-single-item .thumb .date span {
+.meeting-single-item .thumb .date span {
   display: block;
   color: #1f272b;
   font-size: 22px;
   margin-top: 7px;
 }
 
-.painel-single-item .down-content h4 {
+.meeting-single-item .down-content h4 {
   font-size: 22px;
   color: #1f272b;
   font-weight: 600;
@@ -1637,7 +1507,7 @@ section.painel .pagination ul li a:hover {
   margin-bottom: 15px;
 }
 
-.painel-single-item .down-content h5 {
+.meeting-single-item .down-content h5 {
   font-size: 18px;
   color: #1f272b;
   font-weight: 700;
@@ -1645,12 +1515,12 @@ section.painel .pagination ul li a:hover {
   margin-bottom: 15px;
 }
 
-.painel-single-item .down-content p {
+.meeting-single-item .down-content p {
   color: #1f272b;
   font-size: 14px;
 }
 
-.painel-single-item .down-content p.description {
+.meeting-single-item .down-content p.description {
   margin-top: 40px;
   padding-top: 40px;
   border-top: 1px solid #eee;
@@ -1659,45 +1529,45 @@ section.painel .pagination ul li a:hover {
   border-bottom: 1px solid #eee;
 }
 
-.painel-single-item .down-content .share {
+.meeting-single-item .down-content .share {
   margin-top: 40px;
   padding-top: 40px;
   border-top: 1px solid #eee;
 }
 
-.painel-single-item .down-content .share h5 {
+.meeting-single-item .down-content .share h5 {
   float: left;
   margin-right: 10px;
   margin-bottom: 0px;
 }
 
-.painel-single-item .down-content .share ul li {
+.meeting-single-item .down-content .share ul li {
   display: inline;
 }
 
-.painel-single-item .down-content .share ul li a {
+.meeting-single-item .down-content .share ul li a {
   font-size: 14px;
   color: #1f272b;
   transition: all .3s;
 }
 
-.painel-single-item .down-content .share ul li a:hover {
+.meeting-single-item .down-content .share ul li a:hover {
   color: #f5a425;
 }
 
 /* Meeting item column */
-.item-col {
+.templatemo-item-col {
 	width: 31%;
 }
 
 @media (max-width: 992px) {
-	.item-col {
+	.templatemo-item-col {
 		width: 45%;
 	}
 }
 
 @media (max-width: 767px) {
-	.item-col {
+	.templatemo-item-col {
 		width: 100%;
 	}
 }

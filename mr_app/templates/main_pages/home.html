@@ -4,13 +4,10 @@
 
 {% block content %}
 {% load static %}
-
-<!-- ***** Main Banner Area Start ***** -->
 <section class="section main-banner" id="top" data-section="section1">
-  <img autoplay muted loop id="bg-video" src='{% static "images/wallpaperflare-berserk.jpg" %}'>
+  <img autoplay muted loop id="bg-video" src='{% static "images/berserk-background.jpg" %}'>
   </img>
-
-  <div class="video-overlay">
+  <div class="video-overlay header-text">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -22,16 +19,15 @@
               <div class="bnt bnt-primary"><a href="/register">Crie Sua Conta Agora</a></div>
             </div>
             {% endif %}
-
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- ***** Main Banner Area End ***** -->
 
-<section class="services">
+
+<section class="services" style="margin-top: -200px;">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -41,7 +37,7 @@
           <div class="col-lg-12">
             <div class="meeting-item">
               <div class="thumb">
-                <a href="manga/details/7"><img src='{% get_media_prefix %}{{manga.image}}' alt=""></a>
+                <a href="manga/details/{{manga.id}}"><img src='{% get_media_prefix %}{{manga.image}}' alt=""></a>
               </div>
               <div class="down-content">
                 <h3>{{manga.title}}</h3>
@@ -49,9 +45,6 @@
             </div>
           </div>
           {% endfor %}
-
-
-
         </div>
       </div>
     </div>
@@ -68,23 +61,23 @@
       <div class="col-md">
         <div class="row">
           {% for manga in mangas %}
-            <div class="col-md-6">
-              <div class="meeting-item">
-                <div class="thumb">
-                  <a href="/"><img src='{% get_media_prefix %}{{manga.image}}' alt="New Lecturer Meeting"></a>
+          <div class="col-md-6">
+            <div class="meeting-item">
+              <div class="thumb">
+                <a href="/"><img src='{% get_media_prefix %}{{manga.image}}' alt="New Lecturer Meeting"></a>
+              </div>
+              <div class="down-content">
+                <div class="date">
+                  <h6>{{manga.release_date}}</h6>
                 </div>
-                <div class="down-content">
-                  <div class="date">
-                    <h6>{{manga.release_date}}</h6>
-                  </div>
-                  <a href="/">
-                    <h4>{{manga.title}}</h4>
-                  </a>
-                  <p>{{manga.description}}...</p>
-                </div>
+                <a href="/">
+                  <h4>{{manga.title}}</h4>
+                </a>
+                <p>{{manga.description}}...</p>
               </div>
             </div>
-          {% endfor %}    
+          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -103,7 +96,7 @@
 
           {% for manga in mangas %}
           <div class="item">
-            <a href="manga/details/7"><img src='{% get_media_prefix %}{{manga.image}}' alt="Name"></a>
+            <a href="manga/details/{{manga.id}}"><img src='{% get_media_prefix %}{{manga.image}}' alt="Name"></a>
             <div class="down-content">
               <h4>{{manga.title}}</h4>
               <div class="info">
@@ -142,7 +135,7 @@
 
           {% for manga in mangas %}
           <div class="item">
-            <a href="manga/details/7"><img src='{% get_media_prefix %}{{manga.image}}' alt="Name"></a>
+            <a href="manga/details/{{manga.id}}"><img src='{% get_media_prefix %}{{manga.image}}' alt="Name"></a>
             <div class="down-content">
               <h4>{{manga.title}}</h4>
               <div class="info">
