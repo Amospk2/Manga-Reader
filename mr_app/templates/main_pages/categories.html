@@ -23,7 +23,7 @@
             <div class="col-lg-12">
               <div class="filters">
                 <ul>
-                  <li data-filter="*"  class="active">Todos os mangas</li>
+                  <li data-filter="*" class="active">Todos os mangas</li>
                   <li data-filter=".soon">Shounen</li>
                   <li data-filter=".imp">Seinen</li>
                   <li data-filter=".att">Romance</li>
@@ -36,33 +36,39 @@
             <div class="col-lg-12" style="height:650px; overflow: auto;">
               <div class="row grid">
                 {% for manga in mangas %}
-
-                  <div class="col-lg-4 item-col all">
-                    <div class="meeting-item">
-                      <div class="thumb">
-                        <a href="/details"><img src='{% get_static_prefix %}/images/{{manga.image}}' alt=""></a>
+                <p></p>
+                <div class="col-lg-4 item-col all 
+                {% if 'Shounen' in manga.tags %} soon {% endif %} 
+                {% if 'Seinen' in manga.tags %} imp {% endif %}
+                {% if 'Romance' in manga.tags %} att {% endif %}
+                {% if 'Drama' in manga.tags %} tst {% endif %}
+                ">
+                  <div class="meeting-item">
+                    <div class="thumb">
+                      <a href="/manga/details/{{manga.id}}"><img src='{% get_media_prefix %}{{manga.image}}' alt=""></a>
+                    </div>
+                    <div class="down-content">
+                      <div class="date">
+                        <h6>{{manga.release_date}}</h6>
                       </div>
-                      <div class="down-content">
-                        <div class="date">
-                          <h6>{{manga.release_date}}</h6>
-                        </div>
-                        <br>
-                        <h3 align="center">{{manga.title}}</h3>
-                        <p style="text-align: left;">{{manga.description}}...</p>
-                      </div>
+                      <br>
+                      <h3 align="center">{{manga.title}}</h3>
+                      <p>{{manga.tags}}</p>
+                      <p style="text-align: left;">{{manga.description}}...</p>
                     </div>
                   </div>
+                </div>
 
                 {% endfor %}
+
               </div>
             </div>
             <div class="col-lg-12">
               <div class="pagination">
                 <ul>
-                  <li><a href="#">1</a></li>
-                  <li class="active"><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                  {% for number in count_manga %}
+                  <li><a href="{{number}}">{{number}}</a></li>
+                  {% endfor %}
                 </ul>
               </div>
             </div>
@@ -71,54 +77,54 @@
       </div>
     </div>
     <br>
-      {% include 'main_pages/layouts/footer.html' %}
+    {% include 'main_pages/layouts/footer.html' %}
   </section>
-    <script>
-        //according to loftblog tut
-        $('.nav li:first').addClass('active');
+  <script>
+    //according to loftblog tut
+    $('.nav li:first').addClass('active');
 
-        var showSection = function showSection(section, isAnimate) {
+    var showSection = function showSection(section, isAnimate) {
+      var
+        direction = section.replace(/#/, ''),
+        reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+        reqSectionPos = reqSection.offset().top - 0;
+
+      if (isAnimate) {
+        $('body, html').animate({
+          scrollTop: reqSectionPos
+        },
+          800);
+      } else {
+        $('body, html').scrollTop(reqSectionPos);
+      }
+
+    };
+
+    var checkSection = function checkSection() {
+      $('.section').each(function () {
+        var
+          $this = $(this),
+          topEdge = $this.offset().top - 80,
+          bottomEdge = topEdge + $this.height(),
+          wScroll = $(window).scrollTop();
+        if (topEdge < wScroll && bottomEdge > wScroll) {
           var
-          direction = section.replace(/#/, ''),
-          reqSection = $('.section').filter('[data-section="' + direction + '"]'),
-          reqSectionPos = reqSection.offset().top - 0;
+            currentId = $this.data('section'),
+            reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+          reqLink.closest('li').addClass('active').
+            siblings().removeClass('active');
+        }
+      });
+    };
 
-          if (isAnimate) {
-            $('body, html').animate({
-              scrollTop: reqSectionPos },
-            800);
-          } else {
-            $('body, html').scrollTop(reqSectionPos);
-          }
+    $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+      e.preventDefault();
+      showSection($(this).attr('href'), true);
+    });
 
-        };
-
-        var checkSection = function checkSection() {
-          $('.section').each(function () {
-            var
-            $this = $(this),
-            topEdge = $this.offset().top - 80,
-            bottomEdge = topEdge + $this.height(),
-            wScroll = $(window).scrollTop();
-            if (topEdge < wScroll && bottomEdge > wScroll) {
-              var
-              currentId = $this.data('section'),
-              reqLink = $('a').filter('[href*=\\#' + currentId + ']');
-              reqLink.closest('li').addClass('active').
-              siblings().removeClass('active');
-            }
-          });
-        };
-
-        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
-          e.preventDefault();
-          showSection($(this).attr('href'), true);
-        });
-
-        $(window).scroll(function () {
-          checkSection();
-        });
-    </script>
+    $(window).scroll(function () {
+      checkSection();
+    });
+  </script>
 </body>
 {% endblock %}
-

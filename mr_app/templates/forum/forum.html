@@ -24,7 +24,7 @@
             <div class="painel-single-item">
               <div class="down-content">
 
-                <div class="list-group" style="overflow: auto; height: 250px;">
+                <div class="list-group" style="overflow: auto; height: 450px;">
                   {% for post in posts %}
                   <a href="/forum/{{post.id}}"
                     class="list-group-item list-group-item-action flex-column align-items-start">
@@ -33,11 +33,11 @@
                       <div class="col d-flex align-items-right justify-content-end">
                         <small class="text-muted">{{post.publish_date}}</small>
                         <form action="{% url 'remove_forum_post' post.id %}" method="DELETE">
-                          <input class="mt-auto" type="submit" value="X"/>
+                          <input class="mt-auto" type="submit" value="X" />
                         </form>
                       </div>
                     </div>
-                    <p class="mb-1">{{post.content}}</p>
+                    <p class="mb-1">{{ post.content|truncatechars:200 }}</p>
                   </a>
                   {% endfor %}
 
@@ -71,8 +71,8 @@
                     <br>
 
                     <label>Comentario:</label>
-                    <textarea id="content" name="content" type="text" class="form-control description" required
-                      rows="5"></textarea>
+                    <textarea id="content" name="content" type="text" class="form-control description" maxlength="220"
+                      required rows="5"></textarea>
                   </div>
 
                   <div class="col-lg-12">

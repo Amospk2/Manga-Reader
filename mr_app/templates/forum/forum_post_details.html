@@ -25,6 +25,20 @@
             <div class="painel-single-item">
               <div class="down-content">
 
+                <a href="/forum/{{post.id}}" style="background-color: rgb(221, 112, 112);"
+                  class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{post.title}}</h5>
+                    <div class="col d-flex align-items-right justify-content-end">
+                      <small class="text-muted">{{post.publish_date}}</small>
+                      <form action="{% url 'remove_forum_post' post.id %}" method="DELETE">
+                        <input class="mt-auto" type="submit" value="X" />
+                      </form>
+                    </div>
+                  </div>
+                  <p class="mb-1">{{ post.content|truncatechars:150 }}</p>
+                </a>
+
                 <div class="list-group" style="overflow: auto; height: 500px;">
                   {% for comment in post_comments %}
                   <a class="list-group-item list-group-item-action flex-column align-items-start">
@@ -41,7 +55,7 @@
                         <div class="col d-flex align-items-right justify-content-end">
                           <small class="text-muted col-md-auto">{{comment.publish_date}}</small>
                           <form action="{% url 'remove_comment_in_forum_post' comment.id %}" method="DELETE">
-                            <input class="mt-auto" type="submit" value="X"/>
+                            <input class="mt-auto" type="submit" value="X" />
                           </form>
                         </div>
                       </div>

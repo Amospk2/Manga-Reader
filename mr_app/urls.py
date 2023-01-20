@@ -24,6 +24,7 @@ urlpatterns = [
     path('', home_view, name="home"),
     path('about/', about, name="about"),
     path('categories/', categories, name="categories"),
+    path('categories/<int:id>', categories, name="categories"),
 
     #manga
     path('manga/', manga, name="manga"),
