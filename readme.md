@@ -38,3 +38,15 @@ Para rodar o projeto, verifique se o python está instalado e depois execute no 
 
 1:  Criando um super usuário:
 *`python manage.py createsuperuser`* - informe usuário, email e senha
+
+# Screenshots
+
+Algumas referências da aparência do site:
+
+![home](/imgs/img0.png)
+
+![gif](/imgs/gif0.gif)
+
+![feed](/imgs/img1.png)
+
+![feed](/imgs/img2.png)
