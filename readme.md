@@ -4,7 +4,7 @@
 Projeto de um leitor de mangas feito utilizando html, css, js e python como ferramentas. As tecnologias deste projeto:
 
 - Django(Python)
-- Template engine(Jinja)
+- Template engine
 - html, css e js para o front-end
 
 # Conheçendo o projeto
